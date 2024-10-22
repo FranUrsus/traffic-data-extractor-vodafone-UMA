@@ -1,14 +1,13 @@
 import os
 import time
-import geojson
-
 import requests
 from datetime import datetime
-
 from dotenv import load_dotenv
 from osgeo import gdal
+from incidents_scrapper_utils import get_save_upload_traffic_incidents
 
 load_dotenv()
+api_key = os.getenv("TOMTOM_API_KEY")
 
 
 #######################################################################################################################
@@ -20,7 +19,7 @@ def pbf_to_json(filename, current_datetime):
     gdal.VectorTranslate(filename + ".json", ds)
     gdal.VectorTranslate("dump_file_cache.json", ds)
 
-    save_log("OK: Translation saved on file: \n\n", current_datetime)
+    save_log("OK: Translation saved on file", current_datetime)
 
 
 #######################################################################################################################
@@ -64,10 +63,8 @@ def save_log(log, current_datetime):
 
 #######################################################################################################################
 
-api_key = os.getenv("TOMTOM_API_KEY")
 
-if __name__ == "__main__":
-
+def get_save_tiles(message_datetime):
     # TomTom API Key
     # Zoom and coordinates of the tile
     z = 14
@@ -81,13 +78,22 @@ if __name__ == "__main__":
     url1 = f"https://api.tomtom.com/traffic/map/4/tile/flow/relative/{z}/{x1}/{y1}.pbf?key={api_key}"
     url2 = f"https://api.tomtom.com/traffic/map/4/tile/flow/relative/{z}/{x2}/{y2}.pbf?key={api_key}"
 
+    folder_name_1 = "./data/tile1"
+    folder_name_2 = "./data/tile2"
+
+    do_request(url1, message_datetime, folder_name_1)
+    do_request(url2, message_datetime, folder_name_2)
+
+
+if __name__ == "__main__":
     while True:
-        next_file = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+        current_datetime = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 
-        folder_name_1 = "./data/tile1"
-        folder_name_2 = "./data/tile2"
+        # Get the tiles
+        get_save_tiles(current_datetime)
 
-        do_request(url1, next_file, folder_name_1)
-        do_request(url2, next_file, folder_name_2)
+        # Get the traffic incidents
+        get_save_upload_traffic_incidents(current_datetime, log_func=save_log)
 
-        time.sleep(1800)
+        # 15 minutes
+        time.sleep(900)
