@@ -98,7 +98,7 @@ def export_to_csv(traffic_incidents, message_datetime, log_func=print):
     with open(csv_filename, 'a', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['codEle', 'alias', 'suceso', 'autonomia', 'provincia', 'poblacion', 'descripcion',
                       'causa', 'tipo', 'estado', 'carretera', 'sentido', 'hora', 'horaFin', 'fecha', 'fechaFin',
-                      'lng', 'lat', 'pkIni', 'pkFinal', 'icono', 'nivel', 'precision', '_date']
+                      'lng', 'lat', 'pkIni', 'pkFinal', 'icono', 'nivel', 'precision', '_date', '_id']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         if len(existing_incidents) == 0:
@@ -109,7 +109,11 @@ def export_to_csv(traffic_incidents, message_datetime, log_func=print):
                 dateToConvert = f"{incident.fecha} - {incident.hora}"
                 incident._date = convert_date_format(dateToConvert)
                 incident.descripcion = remove_html_tags(incident.descripcion)
-                writer.writerow(incident.__dict__)
+                try:
+                    writer.writerow(incident.__dict__)
+                except Exception as e:
+                    log_func(f"Error writing incident to CSV: {e}", message_datetime)
+                    continue
 
 
 def load_existing_incidents(csv_filename):
