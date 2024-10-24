@@ -57820,3 +57820,904 @@
 [2024_10_23_09_59_35]: [2024_10_23_09_59_35]: Fetched and updated CSV (2)
 
 
+[2024_10_23_10_14_36]: Response saved on file
+[2024_10_23_10_14_36]: OK: Translation saved on file
+[2024_10_23_10_14_36]: Response saved on file
+[2024_10_23_10_14_36]: OK: Translation saved on file
+[2024_10_23_10_14_36]: [2024_10_23_10_14_36]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_10_14_36]: [2024_10_23_10_14_36]: Incident with codEle 16779151 was already stored, updating data.
+
+
+[2024_10_23_11_04_47]: Response saved on file
+[2024_10_23_11_04_47]: OK: Translation saved on file
+[2024_10_23_11_04_47]: Response saved on file
+[2024_10_23_11_04_47]: OK: Translation saved on file
+[2024_10_23_11_04_47]: [2024_10_23_11_04_47]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_11_04_47]: [2024_10_23_11_04_47]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_11_04_47]: [2024_10_23_11_04_47]: Fetched 2 elements
+
+
+[2024_10_23_11_19_49]: Response saved on file
+[2024_10_23_11_19_49]: OK: Translation saved on file
+[2024_10_23_11_19_49]: Response saved on file
+[2024_10_23_11_19_49]: OK: Translation saved on file
+[2024_10_23_11_19_49]: [2024_10_23_11_19_49]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_11_19_49]: [2024_10_23_11_19_49]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_11_19_49]: [2024_10_23_11_19_49]: Fetched 2 elements
+
+
+[2024_10_23_11_34_54]: Response saved on file
+[2024_10_23_11_34_54]: OK: Translation saved on file
+[2024_10_23_11_34_54]: Response saved on file
+[2024_10_23_11_34_54]: OK: Translation saved on file
+[2024_10_23_11_34_54]: [2024_10_23_11_34_54]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_11_34_54]: [2024_10_23_11_34_54]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_11_34_54]: [2024_10_23_11_34_54]: Fetched 2 elements
+
+
+[2024_10_23_11_50_00]: Response saved on file
+[2024_10_23_11_50_00]: OK: Translation saved on file
+[2024_10_23_11_50_00]: Response saved on file
+[2024_10_23_11_50_00]: OK: Translation saved on file
+[2024_10_23_11_50_00]: [2024_10_23_11_50_00]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_11_50_00]: [2024_10_23_11_50_00]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_11_50_00]: [2024_10_23_11_50_00]: Fetched 2 elements
+
+
+[2024_10_23_12_05_02]: Response saved on file
+[2024_10_23_12_05_02]: OK: Translation saved on file
+[2024_10_23_12_05_02]: Response saved on file
+[2024_10_23_12_05_02]: OK: Translation saved on file
+[2024_10_23_12_05_02]: [2024_10_23_12_05_02]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_12_05_02]: [2024_10_23_12_05_02]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_12_05_02]: [2024_10_23_12_05_02]: Fetched 2 elements
+
+
+[2024_10_23_12_20_07]: Response saved on file
+[2024_10_23_12_20_07]: OK: Translation saved on file
+[2024_10_23_12_20_07]: Response saved on file
+[2024_10_23_12_20_07]: OK: Translation saved on file
+[2024_10_23_12_20_07]: [2024_10_23_12_20_07]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_12_20_07]: [2024_10_23_12_20_07]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_12_20_07]: [2024_10_23_12_20_07]: Fetched 2 elements
+
+
+[2024_10_23_12_35_09]: Response saved on file
+[2024_10_23_12_35_09]: OK: Translation saved on file
+[2024_10_23_12_35_09]: Response saved on file
+[2024_10_23_12_35_09]: OK: Translation saved on file
+[2024_10_23_12_35_09]: [2024_10_23_12_35_09]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_12_35_09]: [2024_10_23_12_35_09]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_12_35_09]: [2024_10_23_12_35_09]: Fetched 2 elements
+
+
+[2024_10_23_12_50_14]: Response saved on file
+[2024_10_23_12_50_14]: OK: Translation saved on file
+[2024_10_23_12_50_14]: Response saved on file
+[2024_10_23_12_50_14]: OK: Translation saved on file
+[2024_10_23_12_50_14]: [2024_10_23_12_50_14]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_12_50_14]: [2024_10_23_12_50_14]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_12_50_14]: [2024_10_23_12_50_14]: Fetched 2 elements
+
+
+[2024_10_23_13_05_17]: Response saved on file
+[2024_10_23_13_05_17]: OK: Translation saved on file
+[2024_10_23_13_05_17]: Response saved on file
+[2024_10_23_13_05_17]: OK: Translation saved on file
+[2024_10_23_13_05_17]: [2024_10_23_13_05_17]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_13_05_17]: [2024_10_23_13_05_17]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_13_05_17]: [2024_10_23_13_05_17]: Fetched 2 elements
+
+
+[2024_10_23_13_20_19]: Response saved on file
+[2024_10_23_13_20_19]: OK: Translation saved on file
+[2024_10_23_13_20_19]: Response saved on file
+[2024_10_23_13_20_19]: OK: Translation saved on file
+[2024_10_23_13_20_19]: [2024_10_23_13_20_19]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_13_20_19]: [2024_10_23_13_20_19]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_13_20_19]: [2024_10_23_13_20_19]: Fetched 2 elements
+
+
+[2024_10_23_13_35_24]: Response saved on file
+[2024_10_23_13_35_24]: OK: Translation saved on file
+[2024_10_23_13_35_24]: Response saved on file
+[2024_10_23_13_35_24]: OK: Translation saved on file
+[2024_10_23_13_35_24]: [2024_10_23_13_35_24]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_13_35_24]: [2024_10_23_13_35_24]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_13_35_24]: [2024_10_23_13_35_24]: Fetched 2 elements
+
+
+[2024_10_23_13_50_29]: Response saved on file
+[2024_10_23_13_50_29]: OK: Translation saved on file
+[2024_10_23_13_50_29]: Response saved on file
+[2024_10_23_13_50_29]: OK: Translation saved on file
+[2024_10_23_13_50_29]: [2024_10_23_13_50_29]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_13_50_29]: [2024_10_23_13_50_29]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_13_50_29]: [2024_10_23_13_50_29]: Fetched 2 elements
+
+
+[2024_10_23_14_05_32]: Response saved on file
+[2024_10_23_14_05_32]: OK: Translation saved on file
+[2024_10_23_14_05_32]: Response saved on file
+[2024_10_23_14_05_32]: OK: Translation saved on file
+[2024_10_23_14_05_32]: [2024_10_23_14_05_32]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_14_05_32]: [2024_10_23_14_05_32]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_14_05_32]: [2024_10_23_14_05_32]: Fetched 2 elements
+
+
+[2024_10_23_14_20_34]: Response saved on file
+[2024_10_23_14_20_34]: OK: Translation saved on file
+[2024_10_23_14_20_34]: Response saved on file
+[2024_10_23_14_20_34]: OK: Translation saved on file
+[2024_10_23_14_20_34]: [2024_10_23_14_20_34]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_14_20_34]: [2024_10_23_14_20_34]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_14_20_34]: [2024_10_23_14_20_34]: Fetched 2 elements
+
+
+[2024_10_23_14_35_38]: Response saved on file
+[2024_10_23_14_35_38]: OK: Translation saved on file
+[2024_10_23_14_35_38]: Response saved on file
+[2024_10_23_14_35_38]: OK: Translation saved on file
+[2024_10_23_14_35_38]: [2024_10_23_14_35_38]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_14_35_38]: [2024_10_23_14_35_38]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_14_35_38]: [2024_10_23_14_35_38]: Fetched 2 elements
+
+
+[2024_10_23_14_50_44]: Response saved on file
+[2024_10_23_14_50_44]: OK: Translation saved on file
+[2024_10_23_14_50_44]: Response saved on file
+[2024_10_23_14_50_44]: OK: Translation saved on file
+[2024_10_23_14_50_44]: [2024_10_23_14_50_44]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_14_50_44]: [2024_10_23_14_50_44]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_14_50_44]: [2024_10_23_14_50_44]: Fetched 2 elements
+
+
+[2024_10_23_15_05_45]: Response saved on file
+[2024_10_23_15_05_45]: OK: Translation saved on file
+[2024_10_23_15_05_45]: Response saved on file
+[2024_10_23_15_05_45]: OK: Translation saved on file
+[2024_10_23_15_05_45]: [2024_10_23_15_05_45]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_15_05_45]: [2024_10_23_15_05_45]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_15_05_45]: [2024_10_23_15_05_45]: Incident with codEle 16794592 stored.
+[2024_10_23_15_05_45]: [2024_10_23_15_05_45]: Fetched 3 elements
+
+
+[2024_10_23_15_20_47]: Response saved on file
+[2024_10_23_15_20_47]: OK: Translation saved on file
+[2024_10_23_15_20_47]: Response saved on file
+[2024_10_23_15_20_47]: OK: Translation saved on file
+[2024_10_23_15_20_47]: [2024_10_23_15_20_47]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_15_20_47]: [2024_10_23_15_20_47]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_15_20_47]: [2024_10_23_15_20_47]: Fetched 2 elements
+
+
+[2024_10_23_15_35_49]: Response saved on file
+[2024_10_23_15_35_49]: OK: Translation saved on file
+[2024_10_23_15_35_49]: Response saved on file
+[2024_10_23_15_35_49]: OK: Translation saved on file
+[2024_10_23_15_35_49]: [2024_10_23_15_35_49]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_15_35_49]: [2024_10_23_15_35_49]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_15_35_49]: [2024_10_23_15_35_49]: Fetched 2 elements
+
+
+[2024_10_23_15_50_51]: Response saved on file
+[2024_10_23_15_50_51]: OK: Translation saved on file
+[2024_10_23_15_50_51]: Response saved on file
+[2024_10_23_15_50_51]: OK: Translation saved on file
+[2024_10_23_15_50_51]: [2024_10_23_15_50_51]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_15_50_51]: [2024_10_23_15_50_51]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_15_50_51]: [2024_10_23_15_50_51]: Fetched 2 elements
+
+
+[2024_10_23_16_05_57]: Response saved on file
+[2024_10_23_16_05_57]: OK: Translation saved on file
+[2024_10_23_16_05_57]: Response saved on file
+[2024_10_23_16_05_57]: OK: Translation saved on file
+[2024_10_23_16_05_57]: [2024_10_23_16_05_57]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_16_05_57]: [2024_10_23_16_05_57]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_16_05_57]: [2024_10_23_16_05_57]: Incident with codEle 16796138 stored.
+[2024_10_23_16_05_57]: [2024_10_23_16_05_57]: Incident with codEle 16796206 stored.
+[2024_10_23_16_05_57]: [2024_10_23_16_05_57]: Fetched 4 elements
+
+
+[2024_10_23_16_20_59]: Response saved on file
+[2024_10_23_16_20_59]: OK: Translation saved on file
+[2024_10_23_16_20_59]: Response saved on file
+[2024_10_23_16_20_59]: OK: Translation saved on file
+[2024_10_23_16_20_59]: [2024_10_23_16_20_59]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_16_20_59]: [2024_10_23_16_20_59]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_16_20_59]: [2024_10_23_16_20_59]: Fetched 2 elements
+
+
+[2024_10_23_16_36_04]: Response saved on file
+[2024_10_23_16_36_04]: OK: Translation saved on file
+[2024_10_23_16_36_04]: Response saved on file
+[2024_10_23_16_36_04]: OK: Translation saved on file
+[2024_10_23_16_36_04]: [2024_10_23_16_36_04]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_16_36_04]: [2024_10_23_16_36_04]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_16_36_04]: [2024_10_23_16_36_04]: Incident with codEle 16796777 stored.
+[2024_10_23_16_36_04]: [2024_10_23_16_36_04]: Incident with codEle 16796810 stored.
+[2024_10_23_16_36_04]: [2024_10_23_16_36_04]: Fetched 4 elements
+
+
+[2024_10_23_16_51_09]: Response saved on file
+[2024_10_23_16_51_09]: OK: Translation saved on file
+[2024_10_23_16_51_09]: Response saved on file
+[2024_10_23_16_51_09]: OK: Translation saved on file
+[2024_10_23_16_51_09]: [2024_10_23_16_51_09]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_16_51_09]: [2024_10_23_16_51_09]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_16_51_09]: [2024_10_23_16_51_09]: Incident with codEle 16796777 was already stored, updating data.
+[2024_10_23_16_51_09]: [2024_10_23_16_51_09]: Incident with codEle 16797381 stored.
+[2024_10_23_16_51_09]: [2024_10_23_16_51_09]: Fetched 4 elements
+
+
+[2024_10_23_17_06_14]: Response saved on file
+[2024_10_23_17_06_14]: OK: Translation saved on file
+[2024_10_23_17_06_14]: Response saved on file
+[2024_10_23_17_06_14]: OK: Translation saved on file
+[2024_10_23_17_06_14]: [2024_10_23_17_06_14]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_17_06_14]: [2024_10_23_17_06_14]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_17_06_14]: [2024_10_23_17_06_14]: Incident with codEle 16796777 was already stored, updating data.
+[2024_10_23_17_06_14]: [2024_10_23_17_06_14]: Incident with codEle 16797381 was already stored, updating data.
+[2024_10_23_17_06_14]: [2024_10_23_17_06_14]: Fetched 4 elements
+
+
+[2024_10_23_17_21_19]: Response saved on file
+[2024_10_23_17_21_19]: OK: Translation saved on file
+[2024_10_23_17_21_19]: Response saved on file
+[2024_10_23_17_21_19]: OK: Translation saved on file
+[2024_10_23_17_21_19]: [2024_10_23_17_21_19]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_17_21_19]: [2024_10_23_17_21_19]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_17_21_19]: [2024_10_23_17_21_19]: Incident with codEle 16796777 was already stored, updating data.
+[2024_10_23_17_21_19]: [2024_10_23_17_21_19]: Incident with codEle 16798058 stored.
+[2024_10_23_17_21_19]: [2024_10_23_17_21_19]: Fetched 4 elements
+
+
+[2024_10_23_17_36_21]: Response saved on file
+[2024_10_23_17_36_21]: OK: Translation saved on file
+[2024_10_23_17_36_21]: Response saved on file
+[2024_10_23_17_36_21]: OK: Translation saved on file
+[2024_10_23_17_36_21]: [2024_10_23_17_36_21]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_17_36_21]: [2024_10_23_17_36_21]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_17_36_21]: [2024_10_23_17_36_21]: Incident with codEle 16798058 was already stored, updating data.
+[2024_10_23_17_36_21]: [2024_10_23_17_36_21]: Fetched 3 elements
+
+
+[2024_10_23_17_51_23]: Response saved on file
+[2024_10_23_17_51_23]: OK: Translation saved on file
+[2024_10_23_17_51_23]: Response saved on file
+[2024_10_23_17_51_23]: OK: Translation saved on file
+[2024_10_23_17_51_23]: [2024_10_23_17_51_23]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_17_51_23]: [2024_10_23_17_51_23]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_17_51_23]: [2024_10_23_17_51_23]: Incident with codEle 16798058 was already stored, updating data.
+[2024_10_23_17_51_23]: [2024_10_23_17_51_23]: Fetched 3 elements
+
+
+[2024_10_23_18_06_28]: Response saved on file
+[2024_10_23_18_06_28]: OK: Translation saved on file
+[2024_10_23_18_06_28]: Response saved on file
+[2024_10_23_18_06_28]: OK: Translation saved on file
+[2024_10_23_18_06_28]: [2024_10_23_18_06_28]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_18_06_28]: [2024_10_23_18_06_28]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_18_06_28]: [2024_10_23_18_06_28]: Incident with codEle 16798058 was already stored, updating data.
+[2024_10_23_18_06_28]: [2024_10_23_18_06_28]: Fetched 3 elements
+
+
+[2024_10_23_18_21_33]: Response saved on file
+[2024_10_23_18_21_33]: OK: Translation saved on file
+[2024_10_23_18_21_33]: Response saved on file
+[2024_10_23_18_21_33]: OK: Translation saved on file
+[2024_10_23_18_21_33]: [2024_10_23_18_21_33]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_18_21_33]: [2024_10_23_18_21_33]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_18_21_33]: [2024_10_23_18_21_33]: Fetched 2 elements
+
+
+[2024_10_23_18_36_35]: Response saved on file
+[2024_10_23_18_36_35]: OK: Translation saved on file
+[2024_10_23_18_36_35]: Response saved on file
+[2024_10_23_18_36_35]: OK: Translation saved on file
+[2024_10_23_18_36_35]: [2024_10_23_18_36_35]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_18_36_35]: [2024_10_23_18_36_35]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_18_36_35]: [2024_10_23_18_36_35]: Fetched 2 elements
+
+
+[2024_10_23_18_51_37]: Response saved on file
+[2024_10_23_18_51_37]: OK: Translation saved on file
+[2024_10_23_18_51_37]: Response saved on file
+[2024_10_23_18_51_37]: OK: Translation saved on file
+[2024_10_23_18_51_37]: [2024_10_23_18_51_37]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_18_51_37]: [2024_10_23_18_51_37]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_18_51_37]: [2024_10_23_18_51_37]: Incident with codEle 16800404 stored.
+[2024_10_23_18_51_37]: [2024_10_23_18_51_37]: Fetched 3 elements
+
+
+[2024_10_23_19_06_44]: Response saved on file
+[2024_10_23_19_06_44]: OK: Translation saved on file
+[2024_10_23_19_06_44]: Response saved on file
+[2024_10_23_19_06_44]: OK: Translation saved on file
+[2024_10_23_19_06_44]: [2024_10_23_19_06_44]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_19_06_44]: [2024_10_23_19_06_44]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_19_06_44]: [2024_10_23_19_06_44]: Fetched 2 elements
+
+
+[2024_10_23_19_21_50]: Response saved on file
+[2024_10_23_19_21_50]: OK: Translation saved on file
+[2024_10_23_19_21_50]: Response saved on file
+[2024_10_23_19_21_50]: OK: Translation saved on file
+[2024_10_23_19_21_50]: [2024_10_23_19_21_50]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_19_21_50]: [2024_10_23_19_21_50]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_19_21_50]: [2024_10_23_19_21_50]: Incident with codEle 16800927 stored.
+[2024_10_23_19_21_50]: [2024_10_23_19_21_50]: Fetched 3 elements
+
+
+[2024_10_23_19_36_51]: Response saved on file
+[2024_10_23_19_36_51]: OK: Translation saved on file
+[2024_10_23_19_36_51]: Response saved on file
+[2024_10_23_19_36_51]: OK: Translation saved on file
+[2024_10_23_19_36_51]: [2024_10_23_19_36_51]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_19_36_51]: [2024_10_23_19_36_51]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_19_36_51]: [2024_10_23_19_36_51]: Fetched 2 elements
+
+
+[2024_10_23_19_51_53]: Response saved on file
+[2024_10_23_19_51_53]: OK: Translation saved on file
+[2024_10_23_19_51_53]: Response saved on file
+[2024_10_23_19_51_53]: OK: Translation saved on file
+[2024_10_23_19_51_53]: [2024_10_23_19_51_53]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_19_51_53]: [2024_10_23_19_51_53]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_19_51_53]: [2024_10_23_19_51_53]: Fetched 2 elements
+
+
+[2024_10_23_20_06_58]: Response saved on file
+[2024_10_23_20_06_58]: OK: Translation saved on file
+[2024_10_23_20_06_58]: Response saved on file
+[2024_10_23_20_06_58]: OK: Translation saved on file
+[2024_10_23_20_06_58]: [2024_10_23_20_06_58]: Incident with codEle 16775978 was already stored, updating data.
+[2024_10_23_20_06_58]: [2024_10_23_20_06_58]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_20_06_58]: [2024_10_23_20_06_58]: Fetched 2 elements
+
+
+[2024_10_23_20_22_00]: Response saved on file
+[2024_10_23_20_22_00]: OK: Translation saved on file
+[2024_10_23_20_22_00]: Response saved on file
+[2024_10_23_20_22_00]: OK: Translation saved on file
+[2024_10_23_20_22_00]: [2024_10_23_20_22_00]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_20_22_00]: [2024_10_23_20_22_00]: Incident with codEle 16801759 stored.
+[2024_10_23_20_22_00]: [2024_10_23_20_22_00]: Fetched 2 elements
+
+
+[2024_10_23_20_37_02]: Response saved on file
+[2024_10_23_20_37_02]: OK: Translation saved on file
+[2024_10_23_20_37_02]: Response saved on file
+[2024_10_23_20_37_02]: OK: Translation saved on file
+[2024_10_23_20_37_02]: [2024_10_23_20_37_02]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_20_37_02]: [2024_10_23_20_37_02]: Incident with codEle 16801759 was already stored, updating data.
+[2024_10_23_20_37_02]: [2024_10_23_20_37_02]: Fetched 2 elements
+
+
+[2024_10_23_20_52_04]: Response saved on file
+[2024_10_23_20_52_04]: OK: Translation saved on file
+[2024_10_23_20_52_04]: Response saved on file
+[2024_10_23_20_52_04]: OK: Translation saved on file
+[2024_10_23_20_52_04]: [2024_10_23_20_52_04]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_20_52_04]: [2024_10_23_20_52_04]: Incident with codEle 16801759 was already stored, updating data.
+[2024_10_23_20_52_04]: [2024_10_23_20_52_04]: Fetched 2 elements
+
+
+[2024_10_23_21_07_06]: Response saved on file
+[2024_10_23_21_07_06]: OK: Translation saved on file
+[2024_10_23_21_07_06]: Response saved on file
+[2024_10_23_21_07_06]: OK: Translation saved on file
+[2024_10_23_21_07_06]: [2024_10_23_21_07_06]: Incident with codEle 16779151 was already stored, updating data.
+[2024_10_23_21_07_06]: [2024_10_23_21_07_06]: Incident with codEle 16802550 stored.
+[2024_10_23_21_07_06]: [2024_10_23_21_07_06]: Fetched 2 elements
+
+
+[2024_10_23_21_22_08]: Response saved on file
+[2024_10_23_21_22_08]: OK: Translation saved on file
+[2024_10_23_21_22_08]: Response saved on file
+[2024_10_23_21_22_08]: OK: Translation saved on file
+[2024_10_23_21_22_08]: [2024_10_23_21_22_08]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_21_22_08]: [2024_10_23_21_22_08]: Incident with codEle 16802627 stored.
+[2024_10_23_21_22_08]: [2024_10_23_21_22_08]: Incident with codEle 16802716 stored.
+[2024_10_23_21_22_08]: [2024_10_23_21_22_08]: Fetched 3 elements
+
+
+[2024_10_23_21_37_10]: Response saved on file
+[2024_10_23_21_37_10]: OK: Translation saved on file
+[2024_10_23_21_37_10]: Response saved on file
+[2024_10_23_21_37_10]: OK: Translation saved on file
+[2024_10_23_21_37_10]: [2024_10_23_21_37_10]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_21_37_10]: [2024_10_23_21_37_10]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_21_37_10]: [2024_10_23_21_37_10]: Fetched 2 elements
+
+
+[2024_10_23_21_52_14]: Response saved on file
+[2024_10_23_21_52_14]: OK: Translation saved on file
+[2024_10_23_21_52_14]: Response saved on file
+[2024_10_23_21_52_14]: OK: Translation saved on file
+[2024_10_23_21_52_14]: [2024_10_23_21_52_14]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_21_52_14]: [2024_10_23_21_52_14]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_21_52_14]: [2024_10_23_21_52_14]: Fetched 2 elements
+
+
+[2024_10_23_22_07_19]: Response saved on file
+[2024_10_23_22_07_19]: OK: Translation saved on file
+[2024_10_23_22_07_19]: Response saved on file
+[2024_10_23_22_07_19]: OK: Translation saved on file
+[2024_10_23_22_07_19]: [2024_10_23_22_07_19]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_22_07_19]: [2024_10_23_22_07_19]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_22_07_19]: [2024_10_23_22_07_19]: Incident with codEle 16802966 stored.
+[2024_10_23_22_07_19]: [2024_10_23_22_07_19]: Fetched 3 elements
+
+
+[2024_10_23_22_22_20]: Response saved on file
+[2024_10_23_22_22_20]: OK: Translation saved on file
+[2024_10_23_22_22_20]: Response saved on file
+[2024_10_23_22_22_20]: OK: Translation saved on file
+[2024_10_23_22_22_20]: [2024_10_23_22_22_20]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_22_22_20]: [2024_10_23_22_22_20]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_22_22_20]: [2024_10_23_22_22_20]: Fetched 2 elements
+
+
+[2024_10_23_22_37_22]: Response saved on file
+[2024_10_23_22_37_22]: OK: Translation saved on file
+[2024_10_23_22_37_22]: Response saved on file
+[2024_10_23_22_37_22]: OK: Translation saved on file
+[2024_10_23_22_37_22]: [2024_10_23_22_37_22]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_22_37_22]: [2024_10_23_22_37_22]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_22_37_22]: [2024_10_23_22_37_22]: Fetched 2 elements
+
+
+[2024_10_23_22_52_24]: Response saved on file
+[2024_10_23_22_52_24]: OK: Translation saved on file
+[2024_10_23_22_52_24]: Response saved on file
+[2024_10_23_22_52_24]: OK: Translation saved on file
+[2024_10_23_22_52_24]: [2024_10_23_22_52_24]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_22_52_24]: [2024_10_23_22_52_24]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_22_52_24]: [2024_10_23_22_52_24]: Fetched 2 elements
+
+
+[2024_10_23_23_07_29]: Response saved on file
+[2024_10_23_23_07_29]: OK: Translation saved on file
+[2024_10_23_23_07_29]: Response saved on file
+[2024_10_23_23_07_29]: OK: Translation saved on file
+[2024_10_23_23_07_29]: [2024_10_23_23_07_29]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_23_07_29]: [2024_10_23_23_07_29]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_23_07_29]: [2024_10_23_23_07_29]: Fetched 2 elements
+
+
+[2024_10_23_23_22_34]: Response saved on file
+[2024_10_23_23_22_34]: OK: Translation saved on file
+[2024_10_23_23_22_34]: Response saved on file
+[2024_10_23_23_22_34]: OK: Translation saved on file
+[2024_10_23_23_22_34]: [2024_10_23_23_22_34]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_23_22_34]: [2024_10_23_23_22_34]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_23_22_34]: [2024_10_23_23_22_34]: Fetched 2 elements
+
+
+[2024_10_23_23_37_39]: Response saved on file
+[2024_10_23_23_37_39]: OK: Translation saved on file
+[2024_10_23_23_37_39]: Response saved on file
+[2024_10_23_23_37_39]: OK: Translation saved on file
+[2024_10_23_23_37_39]: [2024_10_23_23_37_39]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_23_37_39]: [2024_10_23_23_37_39]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_23_37_39]: [2024_10_23_23_37_39]: Fetched 2 elements
+
+
+[2024_10_23_23_52_41]: Response saved on file
+[2024_10_23_23_52_41]: OK: Translation saved on file
+[2024_10_23_23_52_41]: Response saved on file
+[2024_10_23_23_52_41]: OK: Translation saved on file
+[2024_10_23_23_52_41]: [2024_10_23_23_52_41]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_23_23_52_41]: [2024_10_23_23_52_41]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_23_23_52_41]: [2024_10_23_23_52_41]: Incident with codEle 16803693 stored.
+[2024_10_23_23_52_41]: [2024_10_23_23_52_41]: Fetched 3 elements
+
+
+[2024_10_24_00_07_43]: Response saved on file
+[2024_10_24_00_07_43]: OK: Translation saved on file
+[2024_10_24_00_07_43]: Response saved on file
+[2024_10_24_00_07_43]: OK: Translation saved on file
+[2024_10_24_00_07_43]: [2024_10_24_00_07_43]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_00_07_43]: [2024_10_24_00_07_43]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_00_07_43]: [2024_10_24_00_07_43]: Fetched 2 elements
+
+
+[2024_10_24_00_22_47]: Response saved on file
+[2024_10_24_00_22_47]: OK: Translation saved on file
+[2024_10_24_00_22_47]: Response saved on file
+[2024_10_24_00_22_47]: OK: Translation saved on file
+[2024_10_24_00_22_47]: [2024_10_24_00_22_47]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_00_22_47]: [2024_10_24_00_22_47]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_00_22_47]: [2024_10_24_00_22_47]: Fetched 2 elements
+
+
+[2024_10_24_00_37_52]: Response saved on file
+[2024_10_24_00_37_52]: OK: Translation saved on file
+[2024_10_24_00_37_52]: Response saved on file
+[2024_10_24_00_37_52]: OK: Translation saved on file
+[2024_10_24_00_37_52]: [2024_10_24_00_37_52]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_00_37_52]: [2024_10_24_00_37_52]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_00_37_52]: [2024_10_24_00_37_52]: Fetched 2 elements
+
+
+[2024_10_24_00_52_54]: Response saved on file
+[2024_10_24_00_52_54]: OK: Translation saved on file
+[2024_10_24_00_52_54]: Response saved on file
+[2024_10_24_00_52_54]: OK: Translation saved on file
+[2024_10_24_00_52_54]: [2024_10_24_00_52_54]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_00_52_54]: [2024_10_24_00_52_54]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_00_52_54]: [2024_10_24_00_52_54]: Fetched 2 elements
+
+
+[2024_10_24_01_07_56]: Response saved on file
+[2024_10_24_01_07_56]: OK: Translation saved on file
+[2024_10_24_01_07_56]: Response saved on file
+[2024_10_24_01_07_56]: OK: Translation saved on file
+[2024_10_24_01_07_56]: [2024_10_24_01_07_56]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_01_07_56]: [2024_10_24_01_07_56]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_01_07_56]: [2024_10_24_01_07_56]: Fetched 2 elements
+
+
+[2024_10_24_01_23_01]: Response saved on file
+[2024_10_24_01_23_01]: OK: Translation saved on file
+[2024_10_24_01_23_01]: Response saved on file
+[2024_10_24_01_23_01]: OK: Translation saved on file
+[2024_10_24_01_23_01]: [2024_10_24_01_23_01]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_01_23_01]: [2024_10_24_01_23_01]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_01_23_01]: [2024_10_24_01_23_01]: Fetched 2 elements
+
+
+[2024_10_24_01_38_06]: Response saved on file
+[2024_10_24_01_38_06]: OK: Translation saved on file
+[2024_10_24_01_38_06]: Response saved on file
+[2024_10_24_01_38_06]: OK: Translation saved on file
+[2024_10_24_01_38_06]: [2024_10_24_01_38_06]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_01_38_06]: [2024_10_24_01_38_06]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_01_38_06]: [2024_10_24_01_38_06]: Fetched 2 elements
+
+
+[2024_10_24_01_53_10]: Response saved on file
+[2024_10_24_01_53_10]: OK: Translation saved on file
+[2024_10_24_01_53_10]: Response saved on file
+[2024_10_24_01_53_10]: OK: Translation saved on file
+[2024_10_24_01_53_10]: [2024_10_24_01_53_10]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_01_53_10]: [2024_10_24_01_53_10]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_01_53_10]: [2024_10_24_01_53_10]: Fetched 2 elements
+
+
+[2024_10_24_02_08_12]: Response saved on file
+[2024_10_24_02_08_12]: OK: Translation saved on file
+[2024_10_24_02_08_12]: Response saved on file
+[2024_10_24_02_08_12]: OK: Translation saved on file
+[2024_10_24_02_08_12]: [2024_10_24_02_08_12]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_02_08_12]: [2024_10_24_02_08_12]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_02_08_12]: [2024_10_24_02_08_12]: Fetched 2 elements
+
+
+[2024_10_24_02_23_14]: Response saved on file
+[2024_10_24_02_23_14]: OK: Translation saved on file
+[2024_10_24_02_23_14]: Response saved on file
+[2024_10_24_02_23_14]: OK: Translation saved on file
+[2024_10_24_02_23_14]: [2024_10_24_02_23_14]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_02_23_14]: [2024_10_24_02_23_14]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_02_23_14]: [2024_10_24_02_23_14]: Fetched 2 elements
+
+
+[2024_10_24_02_38_19]: Response saved on file
+[2024_10_24_02_38_19]: OK: Translation saved on file
+[2024_10_24_02_38_19]: Response saved on file
+[2024_10_24_02_38_19]: OK: Translation saved on file
+[2024_10_24_02_38_19]: [2024_10_24_02_38_19]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_02_38_19]: [2024_10_24_02_38_19]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_02_38_19]: [2024_10_24_02_38_19]: Fetched 2 elements
+
+
+[2024_10_24_02_53_24]: Response saved on file
+[2024_10_24_02_53_24]: OK: Translation saved on file
+[2024_10_24_02_53_24]: Response saved on file
+[2024_10_24_02_53_24]: OK: Translation saved on file
+[2024_10_24_02_53_24]: [2024_10_24_02_53_24]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_02_53_24]: [2024_10_24_02_53_24]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_02_53_24]: [2024_10_24_02_53_24]: Fetched 2 elements
+
+
+[2024_10_24_03_08_26]: Response saved on file
+[2024_10_24_03_08_26]: OK: Translation saved on file
+[2024_10_24_03_08_26]: Response saved on file
+[2024_10_24_03_08_26]: OK: Translation saved on file
+[2024_10_24_03_08_26]: [2024_10_24_03_08_26]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_03_08_26]: [2024_10_24_03_08_26]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_03_08_26]: [2024_10_24_03_08_26]: Fetched 2 elements
+
+
+[2024_10_24_03_23_31]: Response saved on file
+[2024_10_24_03_23_31]: OK: Translation saved on file
+[2024_10_24_03_23_31]: Response saved on file
+[2024_10_24_03_23_31]: OK: Translation saved on file
+[2024_10_24_03_23_31]: [2024_10_24_03_23_31]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_03_23_31]: [2024_10_24_03_23_31]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_03_23_31]: [2024_10_24_03_23_31]: Fetched 2 elements
+
+
+[2024_10_24_03_38_32]: Response saved on file
+[2024_10_24_03_38_32]: OK: Translation saved on file
+[2024_10_24_03_38_32]: Response saved on file
+[2024_10_24_03_38_32]: OK: Translation saved on file
+[2024_10_24_03_38_32]: [2024_10_24_03_38_32]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_03_38_32]: [2024_10_24_03_38_32]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_03_38_32]: [2024_10_24_03_38_32]: Fetched 2 elements
+
+
+[2024_10_24_03_53_34]: Response saved on file
+[2024_10_24_03_53_34]: OK: Translation saved on file
+[2024_10_24_03_53_34]: Response saved on file
+[2024_10_24_03_53_34]: OK: Translation saved on file
+[2024_10_24_03_53_34]: [2024_10_24_03_53_34]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_03_53_34]: [2024_10_24_03_53_34]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_03_53_34]: [2024_10_24_03_53_34]: Fetched 2 elements
+
+
+[2024_10_24_04_08_36]: Response saved on file
+[2024_10_24_04_08_36]: OK: Translation saved on file
+[2024_10_24_04_08_36]: Response saved on file
+[2024_10_24_04_08_36]: OK: Translation saved on file
+[2024_10_24_04_08_36]: [2024_10_24_04_08_36]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_04_08_36]: [2024_10_24_04_08_36]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_04_08_36]: [2024_10_24_04_08_36]: Fetched 2 elements
+
+
+[2024_10_24_04_23_41]: Response saved on file
+[2024_10_24_04_23_41]: OK: Translation saved on file
+[2024_10_24_04_23_41]: Response saved on file
+[2024_10_24_04_23_41]: OK: Translation saved on file
+[2024_10_24_04_23_41]: [2024_10_24_04_23_41]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_04_23_41]: [2024_10_24_04_23_41]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_04_23_41]: [2024_10_24_04_23_41]: Fetched 2 elements
+
+
+[2024_10_24_04_38_43]: Response saved on file
+[2024_10_24_04_38_43]: OK: Translation saved on file
+[2024_10_24_04_38_43]: Response saved on file
+[2024_10_24_04_38_43]: OK: Translation saved on file
+[2024_10_24_04_38_43]: [2024_10_24_04_38_43]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_04_38_43]: [2024_10_24_04_38_43]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_04_38_43]: [2024_10_24_04_38_43]: Fetched 2 elements
+
+
+[2024_10_24_04_53_48]: Response saved on file
+[2024_10_24_04_53_48]: OK: Translation saved on file
+[2024_10_24_04_53_48]: Response saved on file
+[2024_10_24_04_53_48]: OK: Translation saved on file
+[2024_10_24_04_53_48]: [2024_10_24_04_53_48]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_04_53_48]: [2024_10_24_04_53_48]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_04_53_48]: [2024_10_24_04_53_48]: Fetched 2 elements
+
+
+[2024_10_24_05_08_53]: Response saved on file
+[2024_10_24_05_08_53]: OK: Translation saved on file
+[2024_10_24_05_08_53]: Response saved on file
+[2024_10_24_05_08_53]: OK: Translation saved on file
+[2024_10_24_05_08_53]: [2024_10_24_05_08_53]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_05_08_53]: [2024_10_24_05_08_53]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_05_08_53]: [2024_10_24_05_08_53]: Fetched 2 elements
+
+
+[2024_10_24_05_23_55]: Response saved on file
+[2024_10_24_05_23_55]: OK: Translation saved on file
+[2024_10_24_05_23_55]: Response saved on file
+[2024_10_24_05_23_55]: OK: Translation saved on file
+[2024_10_24_05_23_55]: [2024_10_24_05_23_55]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_05_23_55]: [2024_10_24_05_23_55]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_05_23_55]: [2024_10_24_05_23_55]: Fetched 2 elements
+
+
+[2024_10_24_05_38_57]: Response saved on file
+[2024_10_24_05_38_57]: OK: Translation saved on file
+[2024_10_24_05_38_57]: Response saved on file
+[2024_10_24_05_38_57]: OK: Translation saved on file
+[2024_10_24_05_38_57]: [2024_10_24_05_38_57]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_05_38_57]: [2024_10_24_05_38_57]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_05_38_57]: [2024_10_24_05_38_57]: Fetched 2 elements
+
+
+[2024_10_24_05_53_58]: Response saved on file
+[2024_10_24_05_53_58]: OK: Translation saved on file
+[2024_10_24_05_53_58]: Response saved on file
+[2024_10_24_05_53_58]: OK: Translation saved on file
+[2024_10_24_05_53_58]: [2024_10_24_05_53_58]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_05_53_58]: [2024_10_24_05_53_58]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_05_53_58]: [2024_10_24_05_53_58]: Fetched 2 elements
+
+
+[2024_10_24_06_09_03]: Response saved on file
+[2024_10_24_06_09_03]: OK: Translation saved on file
+[2024_10_24_06_09_03]: Response saved on file
+[2024_10_24_06_09_03]: OK: Translation saved on file
+[2024_10_24_06_09_03]: [2024_10_24_06_09_03]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_06_09_03]: [2024_10_24_06_09_03]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_06_09_03]: [2024_10_24_06_09_03]: Fetched 2 elements
+
+
+[2024_10_24_06_24_08]: Response saved on file
+[2024_10_24_06_24_08]: OK: Translation saved on file
+[2024_10_24_06_24_08]: Response saved on file
+[2024_10_24_06_24_08]: OK: Translation saved on file
+[2024_10_24_06_24_08]: [2024_10_24_06_24_08]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_06_24_08]: [2024_10_24_06_24_08]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_06_24_08]: [2024_10_24_06_24_08]: Fetched 2 elements
+
+
+[2024_10_24_06_39_14]: Response saved on file
+[2024_10_24_06_39_14]: OK: Translation saved on file
+[2024_10_24_06_39_14]: Response saved on file
+[2024_10_24_06_39_14]: OK: Translation saved on file
+[2024_10_24_06_39_14]: [2024_10_24_06_39_14]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_06_39_14]: [2024_10_24_06_39_14]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_06_39_14]: [2024_10_24_06_39_14]: Fetched 2 elements
+
+
+[2024_10_24_06_54_16]: Response saved on file
+[2024_10_24_06_54_16]: OK: Translation saved on file
+[2024_10_24_06_54_16]: Response saved on file
+[2024_10_24_06_54_16]: OK: Translation saved on file
+[2024_10_24_06_54_16]: [2024_10_24_06_54_16]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_06_54_16]: [2024_10_24_06_54_16]: Incident with codEle 16802627 was already stored, updating data.
+[2024_10_24_06_54_16]: [2024_10_24_06_54_16]: Fetched 2 elements
+
+
+[2024_10_24_07_09_17]: Response saved on file
+[2024_10_24_07_09_17]: OK: Translation saved on file
+[2024_10_24_07_09_17]: Response saved on file
+[2024_10_24_07_09_17]: OK: Translation saved on file
+[2024_10_24_07_09_17]: [2024_10_24_07_09_17]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_07_09_17]: [2024_10_24_07_09_17]: Fetched 1 elements
+
+
+[2024_10_24_07_24_22]: Response saved on file
+[2024_10_24_07_24_22]: OK: Translation saved on file
+[2024_10_24_07_24_22]: Response saved on file
+[2024_10_24_07_24_22]: OK: Translation saved on file
+[2024_10_24_07_24_22]: [2024_10_24_07_24_22]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_07_24_22]: [2024_10_24_07_24_22]: Fetched 1 elements
+
+
+[2024_10_24_07_39_30]: Response saved on file
+[2024_10_24_07_39_30]: OK: Translation saved on file
+[2024_10_24_07_39_30]: Response saved on file
+[2024_10_24_07_39_30]: OK: Translation saved on file
+[2024_10_24_07_39_30]: [2024_10_24_07_39_30]: Incident with codEle 16794896 stored.
+[2024_10_24_07_39_30]: [2024_10_24_07_39_30]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_07_39_30]: [2024_10_24_07_39_30]: Fetched 2 elements
+
+
+[2024_10_24_07_54_38]: Response saved on file
+[2024_10_24_07_54_38]: OK: Translation saved on file
+[2024_10_24_07_54_38]: Response saved on file
+[2024_10_24_07_54_38]: OK: Translation saved on file
+[2024_10_24_07_54_38]: [2024_10_24_07_54_38]: Incident with codEle 16794896 was already stored, updating data.
+[2024_10_24_07_54_38]: [2024_10_24_07_54_38]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_07_54_38]: [2024_10_24_07_54_38]: Incident with codEle 16806085 stored.
+[2024_10_24_07_54_38]: [2024_10_24_07_54_38]: Incident with codEle 16806122 stored.
+[2024_10_24_07_54_38]: [2024_10_24_07_54_38]: Fetched 4 elements
+
+
+[2024_10_24_08_09_46]: Response saved on file
+[2024_10_24_08_09_46]: OK: Translation saved on file
+[2024_10_24_08_09_46]: Response saved on file
+[2024_10_24_08_09_46]: OK: Translation saved on file
+[2024_10_24_08_09_46]: [2024_10_24_08_09_46]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_08_09_46]: [2024_10_24_08_09_46]: Incident with codEle 16806085 was already stored, updating data.
+[2024_10_24_08_09_46]: [2024_10_24_08_09_46]: Incident with codEle 16806122 was already stored, updating data.
+[2024_10_24_08_09_46]: [2024_10_24_08_09_46]: Incident with codEle 16806877 stored.
+[2024_10_24_08_09_46]: [2024_10_24_08_09_46]: Incident with codEle 16807016 stored.
+[2024_10_24_08_09_46]: [2024_10_24_08_09_46]: Incident with codEle 16807147 stored.
+[2024_10_24_08_09_46]: [2024_10_24_08_09_46]: Incident with codEle 16807182 stored.
+[2024_10_24_08_09_46]: [2024_10_24_08_09_46]: Fetched 7 elements
+
+
+[2024_10_24_08_24_54]: Response saved on file
+[2024_10_24_08_24_54]: OK: Translation saved on file
+[2024_10_24_08_24_54]: Response saved on file
+[2024_10_24_08_24_54]: OK: Translation saved on file
+[2024_10_24_08_24_54]: [2024_10_24_08_24_54]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_08_24_54]: [2024_10_24_08_24_54]: Incident with codEle 16806877 was already stored, updating data.
+[2024_10_24_08_24_54]: [2024_10_24_08_24_54]: Incident with codEle 16807016 was already stored, updating data.
+[2024_10_24_08_24_54]: [2024_10_24_08_24_54]: Incident with codEle 16807147 was already stored, updating data.
+[2024_10_24_08_24_54]: [2024_10_24_08_24_54]: Incident with codEle 16807605 stored.
+[2024_10_24_08_24_54]: [2024_10_24_08_24_54]: Fetched 5 elements
+
+
+[2024_10_24_08_40_02]: Response saved on file
+[2024_10_24_08_40_02]: OK: Translation saved on file
+[2024_10_24_08_40_02]: Response saved on file
+[2024_10_24_08_40_02]: OK: Translation saved on file
+[2024_10_24_08_40_02]: Error fetching data: HTTPSConnectionPool(host='infocar.dgt.es', port=443): Max retries exceeded with url: /etraffic/BuscarElementos?latNS=44&longNS=5&latSW=27&longSW=-19&zoom=5&accion=getElementos&Camaras=false&SensoresTrafico=false&SensoresMeteorologico=false&Paneles=false&Radares=false&IncidenciasRETENCION=true&IncidenciasOBRAS=true&IncidenciasMETEOROLOGICA=true&IncidenciasPUERTOS=true&IncidenciasOTROS=true&IncidenciasEVENTOS=true&IncidenciasRESTRICCIONES=true&niveles=true&caracter=acontecimiento (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024_10_24_08_40_02]: No traffic incidents to convert.
+
+
+[2024_10_24_10_40_17]: Response saved on file
+[2024_10_24_10_40_17]: OK: Translation saved on file
+[2024_10_24_10_40_17]: Response saved on file
+[2024_10_24_10_40_17]: OK: Translation saved on file
+[2024_10_24_10_40_17]: [2024_10_24_10_40_17]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_10_40_17]: [2024_10_24_10_40_17]: Incident with codEle 16812697 stored.
+[2024_10_24_10_40_17]: [2024_10_24_10_40_17]: Fetched 2 elements
+
+
+[2024_10_24_10_55_29]: Response saved on file
+[2024_10_24_10_55_29]: OK: Translation saved on file
+[2024_10_24_10_55_29]: Response saved on file
+[2024_10_24_10_55_29]: OK: Translation saved on file
+[2024_10_24_10_55_29]: [2024_10_24_10_55_29]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_10_55_29]: [2024_10_24_10_55_29]: Incident with codEle 16812697 was already stored, updating data.
+[2024_10_24_10_55_29]: [2024_10_24_10_55_29]: Fetched 2 elements
+
+
+[2024_10_24_11_10_37]: Response saved on file
+[2024_10_24_11_10_37]: OK: Translation saved on file
+[2024_10_24_11_10_37]: Response saved on file
+[2024_10_24_11_10_37]: OK: Translation saved on file
+[2024_10_24_11_10_37]: [2024_10_24_11_10_37]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_11_10_37]: [2024_10_24_11_10_37]: Incident with codEle 16812697 was already stored, updating data.
+[2024_10_24_11_10_37]: [2024_10_24_11_10_37]: Fetched 2 elements
+
+
+[2024_10_24_11_25_48]: Response saved on file
+[2024_10_24_11_25_48]: OK: Translation saved on file
+[2024_10_24_11_25_48]: Response saved on file
+[2024_10_24_11_25_48]: OK: Translation saved on file
+[2024_10_24_11_25_48]: [2024_10_24_11_25_48]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_11_25_48]: [2024_10_24_11_25_48]: Incident with codEle 16812697 was already stored, updating data.
+[2024_10_24_11_25_48]: [2024_10_24_11_25_48]: Fetched 2 elements
+
+
+[2024_10_24_11_40_56]: Response saved on file
+[2024_10_24_11_40_56]: OK: Translation saved on file
+[2024_10_24_11_40_56]: Response saved on file
+[2024_10_24_11_40_56]: OK: Translation saved on file
+[2024_10_24_11_40_56]: [2024_10_24_11_40_56]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_11_40_56]: [2024_10_24_11_40_56]: Incident with codEle 16812697 was already stored, updating data.
+[2024_10_24_11_40_56]: [2024_10_24_11_40_56]: Fetched 2 elements
+
+
+[2024_10_24_11_56_08]: Response saved on file
+[2024_10_24_11_56_08]: OK: Translation saved on file
+[2024_10_24_11_56_08]: Response saved on file
+[2024_10_24_11_56_08]: OK: Translation saved on file
+[2024_10_24_11_56_08]: [2024_10_24_11_56_08]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_11_56_08]: [2024_10_24_11_56_08]: Incident with codEle 16812697 was already stored, updating data.
+[2024_10_24_11_56_08]: [2024_10_24_11_56_08]: Fetched 2 elements
+
+
+[2024_10_24_12_11_16]: Response saved on file
+[2024_10_24_12_11_16]: OK: Translation saved on file
+[2024_10_24_12_11_16]: Response saved on file
+[2024_10_24_12_11_16]: OK: Translation saved on file
+[2024_10_24_12_11_16]: [2024_10_24_12_11_16]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_12_11_16]: [2024_10_24_12_11_16]: Incident with codEle 16812697 was already stored, updating data.
+[2024_10_24_12_11_16]: [2024_10_24_12_11_16]: Fetched 2 elements
+
+
+[2024_10_24_12_26_27]: Response saved on file
+[2024_10_24_12_26_27]: OK: Translation saved on file
+[2024_10_24_12_26_27]: Response saved on file
+[2024_10_24_12_26_27]: OK: Translation saved on file
+[2024_10_24_12_26_27]: [2024_10_24_12_26_27]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_12_26_27]: [2024_10_24_12_26_27]: Incident with codEle 16816277 stored.
+[2024_10_24_12_26_27]: [2024_10_24_12_26_27]: Incident with codEle 16816278 stored.
+[2024_10_24_12_26_27]: [2024_10_24_12_26_27]: Fetched 3 elements
+
+
+[2024_10_24_12_41_35]: Response saved on file
+[2024_10_24_12_41_35]: OK: Translation saved on file
+[2024_10_24_12_41_35]: Response saved on file
+[2024_10_24_12_41_35]: OK: Translation saved on file
+[2024_10_24_12_41_35]: [2024_10_24_12_41_35]: Incident with codEle 16802550 was already stored, updating data.
+[2024_10_24_12_41_35]: [2024_10_24_12_41_35]: Incident with codEle 16816634 stored.
+[2024_10_24_12_41_35]: [2024_10_24_12_41_35]: Incident with codEle 16816972 stored.
+[2024_10_24_12_41_35]: [2024_10_24_12_41_35]: Incident with codEle 16816973 stored.
+[2024_10_24_12_41_35]: [2024_10_24_12_41_35]: Fetched 4 elements
+
+
