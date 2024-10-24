@@ -132,6 +132,10 @@ def load_existing_incidents(csv_filename):
 
 
 def store_new_incidents(incidents, message_datetime, log_func=print):
+    if incidents is None or not incidents or len(incidents) == 0:
+        log_func("No incidents to store.", message_datetime)
+        return
+
     for incident in incidents:
         cod_ele = incident['codEle']
 
@@ -160,7 +164,7 @@ def get_incidents_dict(traffic_incidents, message_datetime, log_func=print):
     return incidents_dict
 
 
-def get_save_upload_traffic_incidents(message_datetime, log_func=print):
+def get_save_upload_traffic_incidents(message_datetime, log_func=print, update_csv=True):
     traffic_info = get_traffic_info(message_datetime, log_func=log_func)
     traffic_incs = [
         TrafficIncident(**incident)
@@ -173,10 +177,11 @@ def get_save_upload_traffic_incidents(message_datetime, log_func=print):
     traffic_incs_dict = get_incidents_dict(traffic_incs, message_datetime, log_func=log_func)
     store_new_incidents(traffic_incs_dict, message_datetime, log_func=log_func)
 
-    if len(traffic_incs) > 0:
+    if len(traffic_incs) > 0 and update_csv:
         export_to_csv(traffic_incs, message_datetime, log_func=log_func)
+        log_func(f"[{message_datetime}]: Updated CSV \n\n", message_datetime)
 
-    log_func(f"[{message_datetime}]: Fetched and updated CSV ({str(len(traffic_incs))})\n\n", message_datetime)
+    log_func(f"[{message_datetime}]: Fetched {str(len(traffic_incs))} elements\n\n", message_datetime)
 
 
 if __name__ == "__main__":

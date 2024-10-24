@@ -93,7 +93,7 @@ if __name__ == "__main__":
         get_save_tiles(current_datetime)
 
         # Get the traffic incidents
-        get_save_upload_traffic_incidents(current_datetime, log_func=save_log)
+        get_save_upload_traffic_incidents(current_datetime, log_func=save_log, update_csv=False)
 
         # 15 minutes
         time.sleep(900)
