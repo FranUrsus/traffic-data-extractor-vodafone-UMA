@@ -135,6 +135,8 @@ def save_json_to_mongo(datetime_tile, graph, neighbours_dictionary, tiles_string
     print(f"{datetime_tile}: Traffic level added to the graph")
 
     # Save the traffic level and additional info in dates collection in MongoDB
+    # TODO: si en un futuro se cambia a una maquina en la nube (con acceso a ficheros locales para la cache)
+    # TODO: lo único que habría que cambiar sería la ruta de la base de datos de MongoDB
     save_in_mongo(datetime_tile, graph)
 
     print(f"{datetime_tile}: Data saved in MongoDB")
