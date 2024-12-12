@@ -1,52 +1,29 @@
+import copy
 import json
 import os
-import copy
+from datetime import datetime
+
+import geojson
 import networkx as nx
 import osmnx as ox
-import geojson
+import shapely
 from shapely.geometry import Point, LineString
-from datetime import datetime
-import mapfunctions.constants as const
-import mapfunctions.mongo as mongo
-import mapfunctions.mongo_dates as mongo_dates
+
+import dates as mongo_dates
+import mongo as mongo
+from utils import are_opposite_bearings
 
 
 ########################################################################################################################
-#                                         TRADUCTION FUNCTIONS
+#                                         TRANSLATION FUNCTIONS
 ########################################################################################################################
 
 
-def translate_all_files_pairs(dirname_input, outmin, outmax, dirname_output):
-    """ Translate all the files in the given directory into GeoJSON objects
-    Args:
-        dirname_input: The directory where the files are located
-        outmin: The minimum coordinates of the input (to normalize)
-        outmax: The maximum coordinates of the input (to normalize)
-        dirname_output: The directory where the output files will be saved"""
-
-    number_of_files = 0
-    # Open each file in the "./json_data" folder
-    for filename in os.listdir(f"{dirname_input}"):
-        if not filename.endswith(".json"):
-            continue
-
-        number_of_files += 1
-
-        with open(f"{dirname_output}/{filename}", "w") as output_file:
-            output_file.write(
-                json.dumps(
-                    translate_file_pairs_into_geojson(dirname_input, filename, outmin, outmax)
-                )
-            )
-            print(f"File '{filename}' translated and saved on '{dirname_output}'")
-
-
-def translate_file_pairs_into_geojson(dirname, filename, outmin, outmax):
+def translate_file_pairs_into_geojson(dirname, outmin, outmax):
     """ Translate a file from the given directory into a GeoJSON object
     this function is called by 'translate_all_files_pairs' function to translate all the files in the given directory
     Args:
         dirname: The directory where the file is located
-        filename: The name of the file
         outmin: The minimum coordinates of the input (to normalize)
         outmax: The maximum coordinates of the input (to normalize)
     Returns:
@@ -56,7 +33,7 @@ def translate_file_pairs_into_geojson(dirname, filename, outmin, outmax):
         "type": "FeatureCollection",
         "features": []}
 
-    with (open(f"{dirname}/{filename}") as file):
+    with (open(dirname) as file):
         json_coordinates = json.load(file)
         feature_id = 0
         for feature in json_coordinates["features"]:
@@ -101,55 +78,29 @@ def normalize(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
 
-########################################################################################################################
-#                                         MIX THE TILES
-########################################################################################################################
-
-
-def mix_tiles_from_two_folder(folder_names):
-    """ Mix the files from the first two folders into the third one
+def create_linestring_geojson(coordinates, properties):
+    """ Create a GeoJSON object with a LineString geometry
     Args:
-        folder_names: A list with the names of the folders"""
+        coordinates: A list of lists of coordinates
+        properties: A dictionary with the properties of the feature
+    Returns:
+        A GeoJSON object with a LineString geometry"""
 
-    for file in os.listdir(f"{folder_names[0]}"):
-        with open(f"{folder_names[0]}/{file}") as file1:
-            json1 = json.load(file1)
+    geojson_dict = {
+        "type": "Feature",
+        "properties": properties,
+        "geometry": {
+            "type": "LineString",
+            "coordinates": coordinates
+        }
+    }
 
-            if file in os.listdir(f"{folder_names[1]}"):
-                with open(f"{folder_names[1]}/{file}") as file2:
-                    json2 = json.load(file2)
-
-                    json1["features"].extend(json2["features"])
-
-                with open(f"{folder_names[2]}/{file}", "w") as output_file:
-                    output_file.write(json.dumps(json1))
-                    print(f"File '{file}' mixed and saved on '{folder_names[2]}'")
+    return geojson_dict
 
 
 ########################################################################################################################
 #                                         ADD INFORMATION (NUMBER OF SPLITS)
 ########################################################################################################################
-
-def add_info_to_folder(folder_input, folder_output, graph,
-                       error_management=False,
-                       print_distant_edges=False,
-                       splits=15):
-    """ Add information to all the files in the given folder (splits, nearest edge, etc.)
-    Args:
-        folder_input: The folder where the files are located
-        folder_output: The folder where the output files will be saved
-        graph: The graph to use to get the nearest edges
-        error_management: A boolean to indicate if the error management is enabled
-        print_distant_edges: A boolean to indicate if the distant edges should be printed"""
-
-    for filename in os.listdir(folder_input):
-        if filename.endswith(".json"):
-            print(f"Adding information to {filename}")
-            add_info_to_file(filename, folder_input, folder_output, graph,
-                             error_management=error_management,
-                             print_distant_edges=print_distant_edges,
-                             splits=splits)
-
 
 def add_info_to_file(filename, folder_input, folder_output, graph,
                      error_management=False,
@@ -165,7 +116,7 @@ def add_info_to_file(filename, folder_input, folder_output, graph,
         print_distant_edges: A boolean to indicate if the distant edges should be printed
         splits: The amount of splits to use"""
 
-    with open(f"{folder_input}/{filename}") as f:
+    with open(f"{folder_input}/{filename}.pbf.json") as f:
         data = geojson.load(f)
 
         middle_coordinates_lat = []
@@ -239,7 +190,7 @@ def add_info_to_file(filename, folder_input, folder_output, graph,
 
             # Check if the direction is reversed or not
             if are_opposite_bearings(nearest_edge["bearing"], bearing_api_edge, tolerance=45):
-                feature["properties"]["nearest_edlge_reverse"] = not nearest_edge["reversed"]
+                feature["properties"]["nearest_edge_reverse"] = not nearest_edge["reversed"]
             else:
                 feature["properties"]["nearest_edge_reverse"] = nearest_edge["reversed"]
 
@@ -266,7 +217,7 @@ def add_info_to_file(filename, folder_input, folder_output, graph,
 
         }
 
-        json.dump(res, open(f"{folder_output}/{filename}", "w"))
+        json.dump(res, open(f"{folder_output}/{filename}.pbf.json", "w"))
 
 
 def get_cardinal_direction_from_bearing(bearing):
@@ -286,18 +237,6 @@ def get_cardinal_direction_from_bearing(bearing):
 ########################################################################################################################
 #                                         SPLIT THE FEATURES
 ########################################################################################################################
-
-
-def split_features_from_folder(folder_input, folder_output):
-    # Read the files in the folder
-    for filename in os.listdir(f"{folder_input}"):
-        with open(f"{folder_input}/{filename}") as f:
-            split_data = split_features(f)
-
-        with open(f"{folder_output}/{filename}", "w") as output_file:
-            geojson.dump(split_data, output_file)
-
-        print(f"File '{filename}' splitted and saved on '{folder_output}'")
 
 
 def split_features(geojson_file,
@@ -404,22 +343,23 @@ def split_line_with_two_points_in_parts(line, parts, format_geojson=False):
 
 
 ########################################################################################################################
-#                                         ADD TRAFFIC LEVEL TO THE GRAPG
+#                                         ADD TRAFFIC LEVEL TO THE GRAPH
 ########################################################################################################################
 
 
 def add_traffic_level_from_folder(graph, folder, neighbours_dictionary, precision=6, save_each_graph_mongo=False, ):
     """ Add the traffic level to the edges from a folder
     Args:
-        graph: The graph to add the traffic level
-        folder: The folder with the traffic level
-        precision: The precision to check the traffic level of the interpolations
-        save_each_graph_mongo: A boolean to indicate if the graph should be saved in the database
+        :param graph: The graph to add the traffic level
+        :param folder: The folder with the traffic level
+        :param save_each_graph_mongo: flag to indicate if the graph should be saved in the database
+        :param precision: The precision to check the traffic level of the interpolations
+        :param neighbours_dictionary: dictionary with the neighbours of the edges
     Returns:
         The graph with the traffic level added"""
 
     if save_each_graph_mongo:
-        db = get_database("TFG")
+        db = mongo.get_database("TFG")
         col = db["graphs"]
 
     for filename in os.listdir(f"{folder}"):
@@ -433,7 +373,7 @@ def add_traffic_level_from_folder(graph, folder, neighbours_dictionary, precisio
         # for i in range(1, 100): # TODO: Delete this for, when it's really executed. This was for a test of speed
         for filename in os.listdir(f"{folder}"):
             graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, filename)
-            insert_data(col, graph_to_dictionary)
+            mongo.insert_data(col, graph_to_dictionary)
             print(f"Saved graph with traffic level from {filename} to MongoDB\n\n")
 
     return graph
@@ -452,7 +392,7 @@ def __prepare_graph_date_before_saving_mongo(graph, filename):
 
     graph_copy = __clean_edges_info(graph_copy, filename)
 
-    graph_to_dictionary = nx.node_link_data(graph_copy)
+    graph_to_dictionary = nx.node_link_data(graph_copy, edges="links")
     del graph_to_dictionary['graph']
     del graph_to_dictionary['directed']
     del graph_to_dictionary['multigraph']
@@ -465,8 +405,9 @@ def __prepare_graph_date_before_saving_mongo(graph, filename):
     graph_to_dictionary["minute_int"] = graph_to_dictionary["datetime"].minute
     graph_to_dictionary["day_of_week"] = graph_to_dictionary["datetime"].strftime("%A")
 
-    # Calculamos el valor flotante de la hora
     graph_to_dictionary["hour_float"] = graph_to_dictionary["hour_int"] + (graph_to_dictionary["minute_int"] / 60.0)
+
+    graph_to_dictionary["automated"] = True
 
     return graph_to_dictionary
 
@@ -479,8 +420,8 @@ def __clean_edges_info(graph, filename):
         The graph with the extra info removed"""
 
     for u, v, data in graph.edges(data=True):
-        data['traffic_level'] = data['dates'][filename]['traffic_level']
-        data['api_data'] = data['dates'][filename]['api_data']
+        data['traffic_level'] = data['most_recent']['traffic_level']
+        data['api_data'] = data['most_recent']['api_data']
         data['current_speed'] = float(data['maxspeed']) * float(data['traffic_level'])
 
         if 'dates' in data:
@@ -536,14 +477,203 @@ def get_neighbours_edges(graph, node1, node2):
     return neighbours_edges
 
 
+def add_traffic_level_from_file(graph, datafile, filename, neighbours_dictionary=None, fill_empty_edges=True,
+                                precision=6):
+    """ Add the traffic level to the edges from a file, and add the traffic level to the edges that are empty
+    Args:
+        graph: The graph to add the traffic level
+        datafile: The file with the traffic level
+        filename: The filename of the file
+        fill_empty_edges: A boolean to indicate if the empty edges should be filled
+        neighbours_dictionary: The dictionary with the neighbours of the edges
+        precision: The precision to check the traffic level of the interpolations
+    Returns:
+        The graph with the traffic level added"""
+
+    for u, v, edge_data in graph.edges(data=True):
+        info = {'traffic_level': None, 'api_data': False, 'date': filename}
+        edge_data["most_recent"] = info
+
+    data = geojson.load(datafile)
+
+    middle_coordinates_lat = []
+    middle_coordinates_lon = []
+
+    coordinates_lat = []
+    coordinates_lon = []
+
+    i = 0
+
+    # Get from every feature (pair of points) the middle point
+    for feature in data["features"]:
+
+        if skip_feature(feature):
+            continue
+
+        i += 1
+        coordinates = feature["geometry"]["coordinates"]
+
+        # Get the two points of the edge
+        point_1 = (coordinates[0][1], coordinates[0][0])
+        point_2 = (coordinates[1][1], coordinates[1][0])
+
+        # We will need this coordinates to get the bearing of the edge
+        coordinates_lon.append(point_1[1])
+        coordinates_lon.append(point_2[1])
+
+        coordinates_lat.append(point_1[0])
+        coordinates_lat.append(point_2[0])
+
+        # Get the middle of both points to try to find the nearest edge in the graph
+        middle_point = ((point_1[0] + point_2[0]) / 2, (point_1[1] + point_2[1]) / 2)
+        middle_coordinates_lon.append(middle_point[1])
+        middle_coordinates_lat.append(middle_point[0])
+
+    # Get the list with the nearest edges and the distance to them
+    nearest_edges_and_distance_list = ox.distance.nearest_edges(graph, middle_coordinates_lon, middle_coordinates_lat,
+                                                                return_dist=True)
+
+    if len(nearest_edges_and_distance_list[0]) != i:
+        raise ValueError("ERROR: Different number of features and nearest edges")
+
+    nearest_edges_list = nearest_edges_and_distance_list[0]
+    nearest_distance_list = nearest_edges_and_distance_list[1]
+
+    # Iteration over the features (easiest way to keep the order)
+    j = 0
+    for feature in data["features"]:
+        if skip_feature(feature):
+            continue
+
+        info = {'traffic_level': feature["properties"]["traffic_level"], 'api_data': True, 'date': filename}
+
+        nearest_edge_id = nearest_edges_list[j]
+
+        # We assume that the nearest edge is the correct one (reversed or not)
+        node_1_id = nearest_edge_id[0]
+        node_2_id = nearest_edge_id[1]
+        nearest_edge = graph.edges[node_1_id, node_2_id, 0]
+
+        # Then, we check if the road is reversed, if so, we invert the order of the edge's nodes
+        bearing_api_edge = ox.bearing.calculate_bearing(coordinates_lat[j * 2], coordinates_lon[j * 2],
+                                                        coordinates_lat[j * 2 + 1], coordinates_lon[j * 2 + 1])
+
+        if not nearest_edge["oneway"] and are_opposite_bearings(nearest_edge["bearing"], bearing_api_edge):
+            nearest_edge = graph.edges[node_2_id, node_1_id, 0]
+
+        # Handle Jimenez Fraud Way (API edge is reversed)
+        if (nearest_edge["osmid"] == 199419587
+                and are_opposite_bearings(nearest_edge["bearing"], bearing_api_edge)):
+            nearest_edge = __handle_jimenez_fraud(graph, node_1_id, node_2_id, filename, info)
+
+        # Add traffic level
+        nearest_edge["most_recent"] = info
+
+        j += 1
+
+    if fill_empty_edges:
+        interpolate_traffic_level(graph, filename, neighbours_dictionary=neighbours_dictionary, precision=precision)
+
+    return graph
+
+
+def __handle_jimenez_fraud(graph, node_1_id, node_2_id, filename, info):
+    nearest_edge = graph.edges[node_1_id, node_2_id, 0]
+
+    if node_1_id == 2094195157 and node_2_id == 2094195159:
+        nearest_edge = graph.edges[418336300, 418336304, 0]
+        extra_edge_info = graph.edges[418336304, 418336308, 0]
+        extra_edge_info["dates"][filename] = info
+
+    if node_1_id == 2094195165 and node_2_id == 3152120576:
+        nearest_edge = graph.edges[418336289, 4943984606, 0]
+
+        extra_edge_info = graph.edges[4943984604, 3152120577, 0]
+        extra_edge_info["dates"][filename] = info
+
+        extra_edge_info = graph.edges[3152120577, 418336292, 0]
+        extra_edge_info["dates"][filename] = info
+
+    if node_1_id == 2094195153 and node_2_id == 2094195155:
+        nearest_edge = graph.edges[418336308, 2094195150, 0]
+
+    if node_1_id == 2614757891 and node_2_id == 2094195161:
+        nearest_edge = graph.edges[250962361, 2614757893, 0]
+
+        extra_edge_info = graph.edges[2614757893, 5625095808, 0]
+        extra_edge_info["dates"][filename] = info
+
+        extra_edge_info = graph.edges[5625095808, 418336300, 0]
+        extra_edge_info["dates"][filename] = info
+
+    if node_1_id == 2094195161 and node_2_id == 2874546302:
+        nearest_edge = graph.edges[2874546303, 250962361, 0]
+
+    return nearest_edge
+
+
+def interpolate_traffic_level(graph, filename, neighbours_dictionary=None, precision=6):
+    """ Interpolate the traffic level of the edges with the traffic level of the neighbours that have it
+    Args:
+        graph: The graph to interpolate the traffic level
+        filename: The filename of the date to interpolate
+        precision: The precision to check the traffic level of the interpolations
+        neighbours_dictionary: The dictionary with the neighbours of the edges"""
+
+    num_iter = 0
+    num_edges_interpolated = 1
+
+    if neighbours_dictionary is None:
+        print("Getting the neighbours edges...")
+        d = {}
+        for u, v, data in graph.edges(data=True):
+            d[(u, v)] = get_neighbours_edges(graph, u, v)
+    else:
+        d = neighbours_dictionary
+
+    print("Interpolating the traffic level...")
+    while num_edges_interpolated > 0:
+        num_edges_interpolated = 0
+        num_iter += 1
+
+        for u, v, data in graph.edges(data=True):
+            if not data['most_recent']['api_data']:
+                neighbours_edges = d[(u, v)]
+
+                neighbour_traffic_levels = [graph.edges[edge[0], edge[1], 0]['most_recent']['traffic_level']
+                                            for edge in neighbours_edges
+                                            if
+                                            graph.edges[edge[0], edge[1], 0]['most_recent'][
+                                                'traffic_level'] is not None]
+
+                if len(neighbour_traffic_levels) > 0:
+                    new_traffic_level = sum(neighbour_traffic_levels) / len(neighbour_traffic_levels)
+
+                    if round(new_traffic_level, precision) != round(
+                            data['most_recent'].get('traffic_level', -1) if data['most_recent'].get(
+                                'traffic_level', -1) is not None else -1, precision):
+                        data['most_recent']['traffic_level'] = new_traffic_level
+                        num_edges_interpolated += 1
+
+        if num_iter % 50 == 0:
+            print("\tIteration: ", num_iter, " - Interpolated ", num_edges_interpolated, " edges\t\tfile =", filename)
+
+
 ########################################################################################################################
 #                                         SAVE TRAFFIC LEVEL IN MONGO
 ########################################################################################################################
 
-def save_in_mongo():
-    mixed_tiles_path = "output_split/mixed"
-    available_files_info = mongo_dates.get_files_dictionary_from_folder(mixed_tiles_path)
-    mongo.insert_multiple_data(mongo.get_database()["dates"], available_files_info)
+def save_in_mongo(datetime_string, graph):
+    # Save the graph in MongoDB
+    graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, datetime_string)
+    mongo.insert_data(mongo.get_database()["graphs"], graph_to_dictionary)
+    print(f"Saved graph with traffic level from {datetime_string} to MongoDB\n\n")
+
+    # Save the date in MongoDB
+    datetime_date = datetime.strptime(datetime_string, "%Y_%m_%d_%H_%M_%S")
+    next_file = {"filename_extensions": f"{datetime_string}.pbf.json", "filename": datetime_string,
+                 "datetime": datetime_date, "day_of_week": datetime_date.strftime("%A"), "automated": True}
+    mongo.insert_data(mongo.get_database()["dates"], next_file)
 
 
 def get_files_dictionary_from_folder(path):
@@ -571,37 +701,5 @@ def get_files_dictionary_from_folder(path):
 ########################################################################################################################
 
 
-def delete_files():
-    print("Deleting files\n\n")
-    dirs = ["data/tile1", "data/tile2", "output_pairs/tile1", "output_pairs/tile2", "output_pairs/mixed", "output_add_info/mixed", "output_split/mixed"]
-
-    for directory in dirs:
-        for filename in os.listdir(directory):
-            os.remove(f"{directory}/{filename}")
-
-
 if __name__ == "__main__":
-    # Open graph from file
-    graph = ox.load_graphml("graph_output/traffic_15files_reduced")
-
-    # Translate both tiles files
-    translate_all_files_pairs("data/tile1", const.OUTMIN_TILE1, const.OUTMAX_TILE1, "output_pairs/tile1")
-    translate_all_files_pairs("data/tile1", const.OUTMIN_TILE2, const.OUTMAX_TILE2, "output_pairs/tile2")
-
-    # Mix the files from the first two folders into the third one
-    mix_tiles_from_two_folder(["output_pairs/tile1", "output_pairs/tile2", "output_pairs/mixed"])
-
-    # Add information to all the files in the given folder (splits, nearest edge, etc.)
-    add_info_to_folder("output_pairs/mixed", "output_add_info/mixed", graph, splits=15)
-
-    # Split the features from the given folder
-    split_features_from_folder("output_add_info/mixed", "output_split/mixed")
-
-    # Add the traffic level to the edges from a folder
-    add_traffic_level_from_folder(graph, "output_split/mixed", precision=3, save_each_graph_mongo=True)
-
-    # Save the dates in MongoDB
-    save_in_mongo()
-
-    # Delete the files
-    delete_files()
+    print("This is the translation file")
