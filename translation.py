@@ -36,7 +36,7 @@ def translate_file_pairs_into_geojson(dirname, outmin, outmax):
     with (open(dirname) as file):
         json_coordinates = json.load(file)
         feature_id = 0
-        for feature in json_coordinates["features"]:
+        for feature in json_coordinates["Traffic flow"]["features"]:
             coordinates = feature["geometry"]["coordinates"]
 
             # Skip points
@@ -44,8 +44,12 @@ def translate_file_pairs_into_geojson(dirname, outmin, outmax):
                 print("\t Skipping point")
                 continue
 
+            if feature["geometry"]["type"] == "LineString":
+                coordinates = [coordinates]
+
             for line in coordinates:
                 for point_number in range(len(line) - 1):
+                    print(point_number, "\n", line, "\n", type(line[0]))
                     next_pair = [
                         [
                             normalize(line[point_number][0], 4095, 0, outmin[0], outmax[0]),

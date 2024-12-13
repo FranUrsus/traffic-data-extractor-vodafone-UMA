@@ -6,7 +6,7 @@ import geojson
 import requests
 from datetime import datetime
 from dotenv import load_dotenv
-from osgeo import gdal
+import mapbox_vector_tile
 
 from incidents_scrapper_utils import get_save_upload_traffic_incidents
 from translation import save_in_mongo, get_neighbours_edges, split_features, add_info_to_file, \
@@ -23,10 +23,13 @@ api_key = os.getenv("TOMTOM_API_KEY")
 #######################################################################################################################
 
 def pbf_to_json(filename, current_datetime):
-    ds = gdal.OpenEx(filename, gdal.OF_VECTOR)
-    gdal.VectorTranslate(filename + ".json", ds)
-    gdal.VectorTranslate("dump_file_cache.json", ds)
+    with open(filename, "rb") as file:
+        data = file.read()
 
+    geojson = mapbox_vector_tile.decode(data)
+
+    with open(filename + ".json", "w") as file:
+        json.dump(geojson, file, indent=4)
     save_log("OK: Translation saved on file", current_datetime)
 
 
