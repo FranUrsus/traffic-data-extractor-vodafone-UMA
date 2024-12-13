@@ -49,7 +49,6 @@ def translate_file_pairs_into_geojson(dirname, outmin, outmax):
 
             for line in coordinates:
                 for point_number in range(len(line) - 1):
-                    print(point_number, "\n", line, "\n", type(line[0]))
                     next_pair = [
                         [
                             normalize(line[point_number][0], 4095, 0, outmin[0], outmax[0]),
