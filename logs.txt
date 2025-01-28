@@ -10,3 +10,32 @@
 [2024_12_13_12_57_01]: [2024_12_13_12_57_01]: Fetched 5 elements
 
 
+[2025_01_28_10_18_21]: [Errno 2] No such file or directory: './data/tile1/2025_01_28_10_18_21.pbf'
+[2025_01_28_10_18_21]: [Errno 2] No such file or directory: './data/tile2/2025_01_28_10_18_21.pbf'
+[2025_01_28_10_19_03]: [Errno 2] No such file or directory: './data/tile1/2025_01_28_10_19_03.pbf'
+[2025_01_28_10_19_03]: [Errno 2] No such file or directory: './data/tile2/2025_01_28_10_19_03.pbf'
+[2025_01_28_10_19_42]: Response saved on file
+[2025_01_28_10_19_42]: OK: Translation saved on file
+[2025_01_28_10_19_42]: Response saved on file
+[2025_01_28_10_19_42]: OK: Translation saved on file
+[2025_01_28_10_19_42]: [2025_01_28_10_19_42]: Incident with codEle 19198849 stored.
+[2025_01_28_10_19_42]: [2025_01_28_10_19_42]: Incident with codEle 19203731 stored.
+[2025_01_28_10_19_42]: [2025_01_28_10_19_42]: Fetched 2 elements
+
+
+[2025_01_28_10_34_42]: Response saved on file
+[2025_01_28_10_34_42]: OK: Translation saved on file
+[2025_01_28_10_34_42]: Response saved on file
+[2025_01_28_10_34_42]: OK: Translation saved on file
+[2025_01_28_10_34_42]: [2025_01_28_10_34_42]: Incident with codEle 19198849 was already stored, updating data.
+[2025_01_28_10_34_42]: [2025_01_28_10_34_42]: Fetched 1 elements
+
+
+[2025_01_28_10_49_42]: Response saved on file
+[2025_01_28_10_49_42]: OK: Translation saved on file
+[2025_01_28_10_49_42]: Response saved on file
+[2025_01_28_10_49_42]: OK: Translation saved on file
+[2025_01_28_10_49_42]: [2025_01_28_10_49_42]: Incident with codEle 19198849 was already stored, updating data.
+[2025_01_28_10_49_42]: [2025_01_28_10_49_42]: Fetched 1 elements
+
+

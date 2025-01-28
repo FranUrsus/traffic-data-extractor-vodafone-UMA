@@ -206,7 +206,7 @@ if __name__ == "__main__":
         save_json_to_mongo(datetime_string, base_graph, neighbours_dictionary_created, tiles)
 
         # Get the traffic incidents
-        get_save_upload_traffic_incidents(datetime_string, log_func=save_log, update_csv=False)
+        #get_save_upload_traffic_incidents(datetime_string, log_func=save_log, update_csv=False)
 
         # Calculate elapsed time and sleep for the remaining time to complete 15 minutes
         elapsed_time = time.time() - start_time
