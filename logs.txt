@@ -39,3 +39,7 @@
 [2025_01_28_10_49_42]: [2025_01_28_10_49_42]: Fetched 1 elements
 
 
+[2025_01_30_21_01_26]: Response saved on file
+[2025_01_30_21_01_26]: OK: Translation saved on file
+[2025_01_30_21_01_26]: Response saved on file
+[2025_01_30_21_01_26]: OK: Translation saved on file

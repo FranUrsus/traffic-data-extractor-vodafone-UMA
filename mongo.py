@@ -9,7 +9,7 @@ load_dotenv()
 CONNECTION_STRING = os.getenv("CONNECTION_STRING")
 
 
-def get_database(database_name="TFG"):
+def get_database(database_name="STEP"):
     # Create a connection using MongoClient
     client = MongoClient(CONNECTION_STRING)
 
