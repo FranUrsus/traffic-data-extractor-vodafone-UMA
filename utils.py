@@ -134,6 +134,6 @@ if __name__ == "__main__":
     zoom = 14
 
     geojson_coordinates_tile1 = get_geojson_corners_coordinates(x_tile_coords, y_tile_coords, zoom, format="lnglat")
-    print(geojson_coordinates_tile1)
+    #print(geojson_coordinates_tile1)
     geojson_coordinates_tile2 = get_geojson_corners_coordinates(x_tile_coords, y_tile_coords - 1, zoom, format="lnglat")
-    print(geojson_coordinates_tile2)
+    #print(geojson_coordinates_tile2)
