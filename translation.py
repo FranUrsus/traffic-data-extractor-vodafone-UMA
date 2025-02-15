@@ -24,8 +24,8 @@ def translate_file_pairs_into_geojson(dirname, outmin, outmax):
     this function is called by 'translate_all_files_pairs' function to translate all the files in the given directory
     Args:
         dirname: The directory where the file is located
-        outmin: The minimum coordinates of the input (to normalize)
-        outmax: The maximum coordinates of the input (to normalize)
+        outmin: The minimum coordinates of the output (to normalize)
+        outmax: The maximum coordinates of the output (to normalize)
     Returns:
         A GeoJSON object with the coordinates of the file"""
 
@@ -48,6 +48,7 @@ def translate_file_pairs_into_geojson(dirname, outmin, outmax):
                 coordinates = [coordinates]
 
             for line in coordinates:
+                # TODO: REVISAR DE DONDE VIENE EL 4095
                 for point_number in range(len(line) - 1):
                     next_pair = [
                         [
@@ -425,7 +426,12 @@ def __clean_edges_info(graph, filename):
     for u, v, data in graph.edges(data=True):
         data['traffic_level'] = data['most_recent']['traffic_level']
         data['api_data'] = data['most_recent']['api_data']
-        data['current_speed'] = float(data['maxspeed']) * float(data['traffic_level'])
+        try:
+            maxspeed = float(data.get('maxspeed', 0))  # Usa 0 si no existe
+            traffic_level = float(data.get('traffic_level', 1))  # Usa 1 si no existe
+            data['current_speed'] = maxspeed * traffic_level
+        except ValueError:
+            data['current_speed'] = 0  # Valor por defecto si la conversión falla
 
         if 'dates' in data:
             del data['dates']
@@ -666,17 +672,16 @@ def interpolate_traffic_level(graph, filename, neighbours_dictionary=None, preci
 #                                         SAVE TRAFFIC LEVEL IN MONGO
 ########################################################################################################################
 
-def save_in_mongo(datetime_string, graph):
+def save_in_mongo(datetime_string, graph, graph_area):
     # Save the graph in MongoDB
-    graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, datetime_string)
-    mongo.insert_data(mongo.get_database()["graphs"], graph_to_dictionary)
-    print(f"Saved graph with traffic level from {datetime_string} to MongoDB\n\n")
-
-    # Save the date in MongoDB
-    datetime_date = datetime.strptime(datetime_string, "%Y_%m_%d_%H_%M_%S")
-    next_file = {"filename_extensions": f"{datetime_string}.pbf.json", "filename": datetime_string,
-                 "datetime": datetime_date, "day_of_week": datetime_date.strftime("%A"), "automated": True}
-    mongo.insert_data(mongo.get_database()["dates"], next_file)
+    if graph_area == 'teatinos':
+        graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, datetime_string)
+        mongo.insert_data(mongo.get_database()["graphs"], graph_to_dictionary)
+        print(f"Saved graph TEATINOS with traffic level from {datetime_string} to MongoDB\n\n")
+    elif graph_area == 'soho':
+        graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, datetime_string)
+        mongo.insert_data(mongo.get_database()["graphs_soho"], graph_to_dictionary)
+        print(f"Saved graph SOHO with traffic level from {datetime_string} to MongoDB\n\n")
 
 
 def get_files_dictionary_from_folder(path):

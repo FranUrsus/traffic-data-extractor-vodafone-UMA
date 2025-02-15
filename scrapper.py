@@ -2,6 +2,8 @@ import json
 import os
 import time
 
+import math
+
 import geojson
 import requests
 from datetime import datetime
@@ -61,7 +63,7 @@ def save_pbf_to_json(response, current_datetime, folder_name):
     pbf_to_json(filename, current_datetime)
 
 
-def save_json_to_mongo(datetime_tile, graph, neighbours_dictionary, tiles_string):
+def save_json_to_mongo(datetime_tile, graph, neighbours_dictionary, tiles_string, graph_area):
     # Translate both tiles files
     for tile_string in tiles_string:
         dir_output = f"cache/translation/{tile_string}"
@@ -77,6 +79,18 @@ def save_json_to_mongo(datetime_tile, graph, neighbours_dictionary, tiles_string
             elif tile_string == "tile2":
                 outmin = const.OUTMIN_TILE2
                 outmax = const.OUTMAX_TILE2
+            elif tile_string == "tile_sojo_1":
+                outmin = const.OUTMIN_TILE1_SOHO
+                outmax = const.OUTMAX_TILE1_SOHO
+            elif tile_string == "tile_sojo_2":
+                outmin = const.OUTMIN_TILE2_SOHO
+                outmax = const.OUTMAX_TILE2_SOHO
+            elif tile_string == "tile_sojo_3":
+                outmin = const.OUTMIN_TILE3_SOHO
+                outmax = const.OUTMAX_TILE3_SOHO
+            elif tile_string == "tile_sojo_4":
+                outmin = const.OUTMIN_TILE4_SOHO
+                outmax = const.OUTMAX_TILE4_SOHO
 
             output_file.write(
                 json.dumps(
@@ -140,7 +154,7 @@ def save_json_to_mongo(datetime_tile, graph, neighbours_dictionary, tiles_string
     # Save the traffic level and additional info in dates collection in MongoDB
     # TODO: si en un futuro se cambia a una maquina en la nube (con acceso a ficheros locales para la cache)
     # TODO: lo único que habría que cambiar sería la ruta de la base de datos de MongoDB
-    save_in_mongo(datetime_tile, graph)
+    save_in_mongo(datetime_tile, graph, graph_area)
 
     print(f"{datetime_tile}: Data saved in MongoDB")
 
@@ -167,35 +181,55 @@ def save_log(log, current_datetime):
 #######################################################################################################################
 
 
-def get_tiles_pbf_and_save_json(message_datetime, z=14):
-    x1 = 7988
-    y1 = 6393
+def get_tiles_pbf_and_save_json(message_datetime):
+    celdas = [
+        # Zoom 14
+        ('tile1', (14, 7988, 6393)),
+        ('tile2', (14, 7988, 6392)),
 
-    x2 = 7988
-    y2 = 6392
+        # Zoom 16
+        ('tile_sojo_1', (16, 31962, 25573)),
+        ('tile_sojo_2', (16, 31963, 25573)),
+        ('tile_sojo_3', (16, 31962, 25572)),
+        ('tile_sojo_4', (16, 31963, 25572))
+    ]
 
-    url1 = f"https://api.tomtom.com/traffic/map/4/tile/flow/relative/{z}/{x1}/{y1}.pbf?key={api_key}"
-    url2 = f"https://api.tomtom.com/traffic/map/4/tile/flow/relative/{z}/{x2}/{y2}.pbf?key={api_key}"
-
-    folder_name_1 = "./data/tile1"
-    folder_name_2 = "./data/tile2"
-
-    get_tiles(url1, message_datetime, folder_name_1)
-    get_tiles(url2, message_datetime, folder_name_2)
+    for celda in celdas:
+        z, x, y = celda[1]
+        url = f"https://api.tomtom.com/traffic/map/4/tile/flow/relative/{z}/{x}/{y}.pbf?key={api_key}"
+        folder_name = f"./data/{celda[0]}"
+        get_tiles(url, message_datetime, folder_name)
 
 
 if __name__ == "__main__":
+
+    #tiles teatinos
     tiles = ["tile1", "tile2"]
 
-    # Open graph from file
+    #tiles_soho
+    tiles_soho = ["tile_sojo_1", "tile_sojo_2", "tile_sojo_3", "tile_sojo_4"]
+
+    # Open graph teatinos from file
     base_graph = ox.load_graphml("base_graph.graphml")
+
+    # Open graph SOHO from file
+    base_graph_soho = ox.load_graphml("soho_malaga.graphml")
+
 
     # Create the neighbours dictionary
     print("Getting the neighbours edges dictionary...")
+
+    # Teatinos
     neighbours_dictionary_created = {}
     for u, v, data in base_graph.edges(data=True):
         neighbours_dictionary_created[(u, v)] = get_neighbours_edges(base_graph, u, v)
-    print("Neighbours edges dictionary loaded.")
+    print("Neighbours edges dictionary loaded for teatinos.")
+
+    #Soho
+    neighbours_dictionary_soho_created = {}
+    for u, v, data in base_graph_soho.edges(data=True):
+        neighbours_dictionary_soho_created[(u, v)] = get_neighbours_edges(base_graph_soho, u, v)
+    print("Neighbours edges dictionary loaded for soho.")
 
     while True:
         start_time = time.time()
@@ -203,10 +237,13 @@ if __name__ == "__main__":
 
         # Get the tiles
         get_tiles_pbf_and_save_json(datetime_string)
-        save_json_to_mongo(datetime_string, base_graph, neighbours_dictionary_created, tiles)
 
-        # Get the traffic incidents
-        #get_save_upload_traffic_incidents(datetime_string, log_func=save_log, update_csv=False)
+        # Teatinos
+        save_json_to_mongo(datetime_string, base_graph, neighbours_dictionary_created, tiles, "teatinos")
+
+        # Soho
+        save_json_to_mongo(datetime_string, base_graph_soho, neighbours_dictionary_soho_created, tiles_soho, "soho")
+
 
         # Calculate elapsed time and sleep for the remaining time to complete 15 minutes
         elapsed_time = time.time() - start_time
