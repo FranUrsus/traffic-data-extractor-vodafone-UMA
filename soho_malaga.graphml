@@ -26,6 +26,47 @@
       <data key="d4">-4.4256289</data>
       <data key="d5">2</data>
     </node>
+     <node id="2011648620">
+      <data key="d3">36.7122368</data>
+      <data key="d4">-4.4250447</data>
+      <data key="d5">2</data>
+    </node>
+    <node id="3653755505">
+      <data key="d3">36.717633</data>
+      <data key="d4">-4.4197431</data>
+      <data key="d5">2</data>
+    </node>
+    <node id="248606010">
+      <data key="d3">36.7174864</data>
+      <data key="d4">-4.4198336</data>
+      <data key="d5">3</data>
+    </node>
+    <node id="250325368">
+      <data key="d3">36.7128057</data>
+      <data key="d4">-4.4244633</data>
+      <data key="d5">3</data>
+    </node>
+    <node id="1628707295">
+      <data key="d3">36.7118956</data>
+      <data key="d4">-4.4252692</data>
+      <data key="d11">traffic_signals</data>
+      <data key="d5">2</data>
+    </node>
+    <node id="1628378019">
+      <data key="d3">36.7150848</data>
+      <data key="d4">-4.4222479</data>
+      <data key="d5">2</data>
+    </node>
+    <node id="250325367">
+      <data key="d3">36.7152862</data>
+      <data key="d4">-4.4220548</data>
+      <data key="d5">2</data>
+    </node>
+    <node id="250325364">
+      <data key="d3">36.7115228</data>
+      <data key="d4">-4.4256413</data>
+      <data key="d5">2</data>
+    </node>
     <node id="250325377">
       <data key="d3">36.7149092</data>
       <data key="d4">-4.4255644</data>
@@ -484,6 +525,52 @@
       <data key="d13">True</data>
       <data key="d14">False</data>
       <data key="d15">40.15495434781604</data>
+      <data key="d16">{}</data>
+      <data key="d17">None</data>
+      <data key="d18">False</data>
+      <data key="d19">None</data>
+      <data key="d20">238.2</data>
+    </edge>
+
+    <edge source="250325367" target="1628378019" id="0">
+      <data key="d8">559702823</data>
+      <data key="d13">True</data>
+      <data key="d9">3</data>
+      <data key="d10">Avenida Manuel Agustín Heredia</data>
+      <data key="d11">primary</data>
+      <data key="d21">50</data>
+      <data key="d14">False</data>
+      <data key="d15">28.245</data>
+      <data key="d16">{}</data>
+      <data key="d17">None</data>
+      <data key="d18">False</data>
+      <data key="d19">None</data>
+      <data key="d20">238.2</data>
+    </edge>
+    <edge source="248606010" target="3653755505" id="0">
+      <data key="d8">75503605</data>
+      <data key="d13">True</data>
+      <data key="d9">2</data>
+      <data key="d10">Avenida Manuel Agustín Heredia</data>
+      <data key="d11">primary</data>
+      <data key="d21">50</data>
+      <data key="d14">False</data>
+      <data key="d15">18.188</data>
+      <data key="d16">{}</data>
+      <data key="d17">None</data>
+      <data key="d18">False</data>
+      <data key="d19">None</data>
+      <data key="d20">238.2</data>
+    </edge>
+    <edge source="250325368" target="2011648620" id="0">
+      <data key="d8">35902750</data>
+      <data key="d13">True</data>
+      <data key="d9">3</data>
+      <data key="d10">Avenida Manuel Agustín Heredia</data>
+      <data key="d11">primary</data>
+      <data key="d21">50</data>
+      <data key="d14">False</data>
+      <data key="d15">81.777</data>
       <data key="d16">{}</data>
       <data key="d17">None</data>
       <data key="d18">False</data>
