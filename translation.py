@@ -5,14 +5,14 @@ import os
 from datetime import datetime
 
 import geojson
-import networkx as nx
 import osmnx as ox
 import shapely
 from shapely.geometry import Point, LineString
 
 from mongo.entity import Graph
 from mongo.repository import RepositorioGraph, RepositorioGraphSoho
-from utils import are_opposite_bearings, get_neighbours_edges, normalize, skip_feature
+from utils import are_opposite_bearings, get_neighbours_edges, normalize, skip_feature, \
+    get_cardinal_direction_from_bearing, create_linestring_geojson
 from utils_zona_teatinos import handle_jimenez_fraud
 
 
@@ -68,24 +68,6 @@ def translate_file_pairs_into_geojson(dirname, outmin, outmax):
                     translation["features"].append(create_linestring_geojson(next_pair, feature_properties))
 
     return translation
-
-
-def create_linestring_geojson(coordinates, properties):
-    """ Create a GeoJSON object with a LineString geometry
-    Args:
-        coordinates: A list of lists of coordinates
-        properties: A dictionary with the properties of the feature
-    Returns:
-        A GeoJSON object with a LineString geometry"""
-
-    return {
-        "type": "Feature",
-        "properties": properties,
-        "geometry": {
-            "type": "LineString",
-            "coordinates": coordinates
-        }
-    }
 
 
 def __generate_lists_coordiantes_and_neares_edges(data, graph):
@@ -238,19 +220,6 @@ def add_info_to_file(filename, folder_input, folder_output, graph,
     json.dump(res, open(f"{folder_output}/{filename}.pbf.json", "w"))
 
 
-def get_cardinal_direction_from_bearing(bearing):
-    """ Get the cardinal direction from a bearing
-    Args:
-        bearing: The bearing in degrees
-    Returns:
-        A string with the cardinal direction"""
-
-    points = ["north", "north east", "east", "south east", "south", "south west", "west", "north west"]
-
-    bearing = bearing % 360
-    bearing = int(bearing / 45)  # values 0 to 7
-    return points[bearing]
-
 
 ########################################################################################################################
 #                                         SPLIT THE FEATURES
@@ -367,69 +336,12 @@ def add_traffic_level_from_folder(graph, folder, neighbours_dictionary, precisio
             print(f"Added traffic level from {filename}\n\n")
 
     if save_each_graph_mongo:
-        # for i in range(1, 100): # TODO: Delete this for, when it's really executed. This was for a test of speed
         for filename in os.listdir(f"{folder}"):
             repo = RepositorioGraph()
-            graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, filename)
-            repo.insert_one(**graph_to_dictionary)
+            graph_object = Graph.generate_graph(graph, filename)
+            repo.insert_one(graph_object)
             print(f"Saved graph with traffic level from {filename} to MongoDB\n\n")
 
-    return graph
-
-
-def __prepare_graph_date_before_saving_mongo(graph, filename):
-    """ Remove the extra info from the graph before saving it to the database
-    Args:
-        graph: The graph to remove the extra info
-        filename: The filename of the date to remove the extra info
-    Returns:
-        The graph with the extra info removed"""
-
-    # Copy graph to avoid modifying the original graph
-    graph_copy = graph.copy()
-
-    graph_copy = __clean_edges_info(graph_copy)
-
-    graph_to_dictionary = nx.node_link_data(graph_copy, edges="links")
-
-    graph_to_dictionary.pop('graph', None)
-    graph_to_dictionary.pop('directed', None)
-    graph_to_dictionary.pop('multigraph', None)
-    graph_to_dictionary.pop('nodes', None)
-
-    graph_to_dictionary['filename'] = filename
-    graph_to_dictionary["datetime"] = datetime.strptime(filename.split(".")[0], "%Y_%m_%d_%H_%M_%S")
-    graph_to_dictionary["hour_minute_string"] = graph_to_dictionary["datetime"].strftime("%H:%M")
-    graph_to_dictionary["hour_int"] = graph_to_dictionary["datetime"].hour
-    graph_to_dictionary["minute_int"] = graph_to_dictionary["datetime"].minute
-    graph_to_dictionary["day_of_week"] = graph_to_dictionary["datetime"].strftime("%A")
-
-    graph_to_dictionary["hour_float"] = graph_to_dictionary["hour_int"] + (graph_to_dictionary["minute_int"] / 60.0)
-
-    graph_to_dictionary["automated"] = True
-
-    return graph_to_dictionary
-
-
-def __clean_edges_info(graph):
-    """ Remove the extra info from the graph
-    Args:
-        graph: The graph to remove the extra info
-    Returns:
-        The graph with the extra info removed"""
-    clean_keys = ('dates', 'lanes', 'oneway', 'bearing', 'speed_kph', 'maxspeed', 'length',
-                  'geometry', 'ref', 'service', 'junction', 'reversed', 'travel_time')
-    for u, v, data in graph.edges(data=True):
-        data['traffic_level'] = data['most_recent']['traffic_level']
-        data['api_data'] = data['most_recent']['api_data']
-        try:
-            maxspeed = float(data.get('maxspeed', 0))  # Usa 0 si no existe
-            traffic_level = float(data.get('traffic_level', 1))  # Usa 1 si no existe
-            data['current_speed'] = maxspeed * traffic_level
-        except ValueError:
-            data['current_speed'] = 0  # Valor por defecto si la conversión falla
-        for key in clean_keys:
-            data.pop(key, None)
     return graph
 
 
@@ -551,8 +463,8 @@ def save_in_mongo(datetime_string, graph, graph_area):
         repo = RepositorioGraph()
     elif graph_area == 'soho':
         repo = RepositorioGraphSoho()
-    graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, datetime_string)
-    repo.insert_one(Graph(**graph_to_dictionary))
+    graph_object = Graph.generate_graph(graph, datetime_string)
+    repo.insert_one(graph_object)
 
 
 def get_files_dictionary_from_folder(path):

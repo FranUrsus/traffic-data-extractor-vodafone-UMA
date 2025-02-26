@@ -1,6 +1,24 @@
 import math
 
 
+def create_linestring_geojson(coordinates, properties):
+    """ Create a GeoJSON object with a LineString geometry
+    Args:
+        coordinates: A list of lists of coordinates
+        properties: A dictionary with the properties of the feature
+    Returns:
+        A GeoJSON object with a LineString geometry"""
+
+    return {
+        "type": "Feature",
+        "properties": properties,
+        "geometry": {
+            "type": "LineString",
+            "coordinates": coordinates
+        }
+    }
+
+
 def get_neighbours_edges(graph, node1, node2):
     """ Get the neighbours edges of the nodes
     Args:
