@@ -1,5 +1,6 @@
 import copy
 import json
+import logging
 import os
 from datetime import datetime
 
@@ -9,9 +10,10 @@ import osmnx as ox
 import shapely
 from shapely.geometry import Point, LineString
 
-import dates as mongo_dates
-import mongo as mongo
-from utils import are_opposite_bearings
+from mongo.entity import Graph
+from mongo.repository import RepositorioGraph, RepositorioGraphSoho
+from utils import are_opposite_bearings, get_neighbours_edges, normalize, skip_feature
+from utils_zona_teatinos import handle_jimenez_fraud
 
 
 ########################################################################################################################
@@ -68,20 +70,6 @@ def translate_file_pairs_into_geojson(dirname, outmin, outmax):
     return translation
 
 
-def normalize(x, in_min, in_max, out_min, out_max):
-    """ Normalize a value from one range to another
-    Args:
-        x: The value to normalize
-        in_min: The minimum value of the input range
-        in_max: The maximum value of the input range
-        out_min: The minimum value of the output range
-        out_max: The maximum value of the output range
-    Returns:
-        The normalized value"""
-
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-
-
 def create_linestring_geojson(coordinates, properties):
     """ Create a GeoJSON object with a LineString geometry
     Args:
@@ -90,7 +78,7 @@ def create_linestring_geojson(coordinates, properties):
     Returns:
         A GeoJSON object with a LineString geometry"""
 
-    geojson_dict = {
+    return {
         "type": "Feature",
         "properties": properties,
         "geometry": {
@@ -99,7 +87,32 @@ def create_linestring_geojson(coordinates, properties):
         }
     }
 
-    return geojson_dict
+
+def __generate_lists_coordiantes_and_neares_edges(data, graph):
+    middle_coordinates_lat, middle_coordinates_lon = [], []
+    coordinates_lat, coordinates_lon = [], []
+    # Get from every feature (pair of points) the middle point
+    for feature in data["features"]:
+
+        if skip_feature(feature):
+            continue
+
+        coordinates = feature["geometry"]["coordinates"]
+
+        point_1_lat, point_1_lon = coordinates[0][1], coordinates[0][0]
+        point_2_lat, point_2_lon = coordinates[1][1], coordinates[1][0]
+
+        coordinates_lon.append(point_1_lon)
+        coordinates_lat.append(point_1_lat)
+
+        coordinates_lat.append(point_2_lat)
+        coordinates_lon.append(point_2_lon)
+
+        middle_coordinates_lat.append((point_1_lon + point_2_lon) / 2)
+        middle_coordinates_lon.append((point_1_lon + point_2_lon) / 2)
+    nearest_edges_and_distance_list = ox.distance.nearest_edges(graph, middle_coordinates_lon, middle_coordinates_lat,
+                                                                return_dist=True)
+    return coordinates_lat, coordinates_lon, nearest_edges_and_distance_list
 
 
 ########################################################################################################################
@@ -123,105 +136,106 @@ def add_info_to_file(filename, folder_input, folder_output, graph,
     with open(f"{folder_input}/{filename}.pbf.json") as f:
         data = geojson.load(f)
 
-        middle_coordinates_lat = []
-        middle_coordinates_lon = []
+    middle_coordinates_lat = []
+    middle_coordinates_lon = []
 
-        coordinates_lat = []
-        coordinates_lon = []
+    coordinates_lat = []
+    coordinates_lon = []
 
-        new_features = []
-        i = 0
-        for feature in data["features"]:
+    new_features = []
+    i = 0
+    for feature in data["features"]:
 
-            if skip_feature(feature):
-                continue
+        if skip_feature(feature):
+            continue
 
-            i += 1
+        i += 1
 
-            coordinates = feature["geometry"]["coordinates"]
+        coordinates = feature["geometry"]["coordinates"]
 
-            # We add the length of the edge to the total length
-            point1 = Point(coordinates[0][1], coordinates[0][0])
-            point2 = Point(coordinates[1][1], coordinates[1][0])
-            length = point1.distance(point2) * 100000
-            feature["properties"]["length"] = length
+        # We add the length of the edge to the total length
+        point1 = Point(coordinates[0][1], coordinates[0][0])
+        point2 = Point(coordinates[1][1], coordinates[1][0])
 
-            coordinates_lat.append(point1.x)
-            coordinates_lat.append(point2.x)
+        length = point1.distance(point2) * 100_000
+        feature["properties"]["length"] = length
 
-            coordinates_lon.append(point1.y)
-            coordinates_lon.append(point2.y)
+        coordinates_lat.append(point1.x)
+        coordinates_lat.append(point2.x)
 
-            # Get the middle of both points
-            middle_point = ((point1.x + point2.x) / 2, (point1.y + point2.y) / 2)
-            middle_coordinates_lon.append(middle_point[1])
-            middle_coordinates_lat.append(middle_point[0])
+        coordinates_lon.append(point1.y)
+        coordinates_lon.append(point2.y)
 
-        nearest_edges_and_distance_list = ox.distance.nearest_edges(graph, middle_coordinates_lon,
-                                                                    middle_coordinates_lat, return_dist=True)
+        # Get the middle of both points
+        middle_point = ((point1.x + point2.x) / 2, (point1.y + point2.y) / 2)
+        middle_coordinates_lon.append(middle_point[1])
+        middle_coordinates_lat.append(middle_point[0])
 
-        if len(nearest_edges_and_distance_list[0]) != i:
-            raise ValueError("ERROR: Different number of features and nearest edges")
+    nearest_edges_and_distance_list = ox.distance.nearest_edges(graph, middle_coordinates_lon,
+                                                                middle_coordinates_lat, return_dist=True)
 
-        nearest_edges_list = nearest_edges_and_distance_list[0]
-        nearest_distance_list = nearest_edges_and_distance_list[1]
+    if len(nearest_edges_and_distance_list[0]) != i:
+        raise ValueError("ERROR: Different number of features and nearest edges")
 
-        j = 0
-        for feature in data["features"]:
+    nearest_edges_list = nearest_edges_and_distance_list[0]
+    nearest_distance_list = nearest_edges_and_distance_list[1]
 
-            if skip_feature(feature):
-                continue
+    j = 0
+    for feature in data["features"]:
 
-            nearest_edge_id = nearest_edges_list[j]
-            feature["properties"]["error"] = ""
-            distance_in_meters = nearest_distance_list[j] * 100000
+        if skip_feature(feature):
+            continue
 
-            if distance_in_meters > 10:
-                feature["properties"]["error"] = "Very distant from the nearest edge"
+        nearest_edge_id = nearest_edges_list[j]
+        feature["properties"]["error"] = ""
+        distance_in_meters = nearest_distance_list[j] * 100000
 
-                if print_distant_edges:
-                    print(
-                        f"Feature {j} (edge{nearest_edge_id}) is very distant from the nearest edge: "
-                        f"{distance_in_meters} meters -> {[middle_coordinates_lat[j], middle_coordinates_lon[j]]}")
+        if distance_in_meters > 10:
+            feature["properties"]["error"] = "Very distant from the nearest edge"
 
-                j += 1
-                continue
-
-            nearest_edge = graph.edges[nearest_edge_id]
-
-            bearing_api_edge = ox.bearing.calculate_bearing(coordinates_lat[j * 2], coordinates_lon[j * 2],
-                                                            coordinates_lat[j * 2 + 1], coordinates_lon[j * 2 + 1])
-
-            # Check if the direction is reversed or not
-            if are_opposite_bearings(nearest_edge["bearing"], bearing_api_edge, tolerance=45):
-                feature["properties"]["nearest_edge_reverse"] = not nearest_edge["reversed"]
-            else:
-                feature["properties"]["nearest_edge_reverse"] = nearest_edge["reversed"]
-
-            # Once we know the nearest edge, we check if the API edge needs to be split
-            amount_splits = round(feature["properties"]["length"] / splits)
-
-            if 'junction' in nearest_edge.keys() and nearest_edge["junction"] == "roundabout":
-                feature["properties"]["splits"] = 0
-                feature["properties"]["junction"] = nearest_edge["junction"]
-            else:
-                feature["properties"]["splits"] = amount_splits
-
-            feature["properties"]["aiming"] = get_cardinal_direction_from_bearing(bearing_api_edge)
-            feature["properties"]["api_bearing"] = bearing_api_edge
+            if print_distant_edges:
+                print(
+                    f"Feature {j} (edge{nearest_edge_id}) is very distant from the nearest edge: "
+                    f"{distance_in_meters} meters -> {[middle_coordinates_lat[j], middle_coordinates_lon[j]]}")
 
             j += 1
+            continue
 
-            new_features.append(feature)
+        nearest_edge = graph.edges[nearest_edge_id]
 
-        res = {
-            "type": "FeatureCollection",
-            # "features": data["features"]
-            "features": new_features
+        bearing_api_edge = ox.bearing.calculate_bearing(coordinates_lat[j * 2], coordinates_lon[j * 2],
+                                                        coordinates_lat[j * 2 + 1], coordinates_lon[j * 2 + 1])
 
-        }
+        # Check if the direction is reversed or not
+        if are_opposite_bearings(nearest_edge["bearing"], bearing_api_edge, tolerance=45):
+            feature["properties"]["nearest_edge_reverse"] = not nearest_edge["reversed"]
+        else:
+            feature["properties"]["nearest_edge_reverse"] = nearest_edge["reversed"]
 
-        json.dump(res, open(f"{folder_output}/{filename}.pbf.json", "w"))
+        # Once we know the nearest edge, we check if the API edge needs to be split
+        amount_splits = round(feature["properties"]["length"] / splits)
+
+        if 'junction' in nearest_edge.keys() and nearest_edge["junction"] == "roundabout":
+            feature["properties"]["splits"] = 0
+            feature["properties"]["junction"] = nearest_edge["junction"]
+        else:
+            feature["properties"]["splits"] = amount_splits
+
+        feature["properties"]["aiming"] = get_cardinal_direction_from_bearing(bearing_api_edge)
+        feature["properties"]["api_bearing"] = bearing_api_edge
+
+        j += 1
+
+        new_features.append(feature)
+
+    res = {
+        "type": "FeatureCollection",
+        # "features": data["features"]
+        "features": new_features
+
+    }
+
+    json.dump(res, open(f"{folder_output}/{filename}.pbf.json", "w"))
 
 
 def get_cardinal_direction_from_bearing(bearing):
@@ -279,23 +293,6 @@ def split_features(geojson_file,
 
     data['features'] = new_features
     return data
-
-
-def skip_feature(feature):
-    """ Check if the feature should be skipped
-    Args:
-        feature: The feature to check
-    Returns:
-        A boolean indicating if the feature should be skipped"""
-
-    if "geometry" not in feature.keys():
-        return True
-    if "coordinates" not in feature["geometry"].keys():
-        return True
-    if len(feature["geometry"]["coordinates"]) != 2:
-        return True
-
-    return False
 
 
 def split_line_with_two_points_in_parts(line, parts, format_geojson=False):
@@ -362,10 +359,6 @@ def add_traffic_level_from_folder(graph, folder, neighbours_dictionary, precisio
     Returns:
         The graph with the traffic level added"""
 
-    if save_each_graph_mongo:
-        db = mongo.get_database("TFG")
-        col = db["graphs"]
-
     for filename in os.listdir(f"{folder}"):
         with open(f"{folder}/{filename}") as datafile:
             graph = add_traffic_level_from_file(graph, datafile, filename,
@@ -376,8 +369,9 @@ def add_traffic_level_from_folder(graph, folder, neighbours_dictionary, precisio
     if save_each_graph_mongo:
         # for i in range(1, 100): # TODO: Delete this for, when it's really executed. This was for a test of speed
         for filename in os.listdir(f"{folder}"):
+            repo = RepositorioGraph()
             graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, filename)
-            mongo.insert_data(col, graph_to_dictionary)
+            repo.insert_one(**graph_to_dictionary)
             print(f"Saved graph with traffic level from {filename} to MongoDB\n\n")
 
     return graph
@@ -394,13 +388,14 @@ def __prepare_graph_date_before_saving_mongo(graph, filename):
     # Copy graph to avoid modifying the original graph
     graph_copy = graph.copy()
 
-    graph_copy = __clean_edges_info(graph_copy, filename)
+    graph_copy = __clean_edges_info(graph_copy)
 
     graph_to_dictionary = nx.node_link_data(graph_copy, edges="links")
-    del graph_to_dictionary['graph']
-    del graph_to_dictionary['directed']
-    del graph_to_dictionary['multigraph']
-    del graph_to_dictionary['nodes']
+
+    graph_to_dictionary.pop('graph', None)
+    graph_to_dictionary.pop('directed', None)
+    graph_to_dictionary.pop('multigraph', None)
+    graph_to_dictionary.pop('nodes', None)
 
     graph_to_dictionary['filename'] = filename
     graph_to_dictionary["datetime"] = datetime.strptime(filename.split(".")[0], "%Y_%m_%d_%H_%M_%S")
@@ -416,13 +411,14 @@ def __prepare_graph_date_before_saving_mongo(graph, filename):
     return graph_to_dictionary
 
 
-def __clean_edges_info(graph, filename):
+def __clean_edges_info(graph):
     """ Remove the extra info from the graph
     Args:
         graph: The graph to remove the extra info
     Returns:
         The graph with the extra info removed"""
-
+    clean_keys = ('dates', 'lanes', 'oneway', 'bearing', 'speed_kph', 'maxspeed', 'length',
+                  'geometry', 'ref', 'service', 'junction', 'reversed', 'travel_time')
     for u, v, data in graph.edges(data=True):
         data['traffic_level'] = data['most_recent']['traffic_level']
         data['api_data'] = data['most_recent']['api_data']
@@ -432,58 +428,9 @@ def __clean_edges_info(graph, filename):
             data['current_speed'] = maxspeed * traffic_level
         except ValueError:
             data['current_speed'] = 0  # Valor por defecto si la conversión falla
-
-        if 'dates' in data:
-            del data['dates']
-        if 'lanes' in data:
-            del data['lanes']
-        if 'oneway' in data:
-            del data['oneway']
-        if 'bearing' in data:
-            del data['bearing']
-        if 'speed_kph' in data:
-            del data['speed_kph']
-        if 'maxspeed' in data:
-            del data['maxspeed']
-        if 'length' in data:
-            del data['length']
-        if 'geometry' in data:
-            del data['geometry']
-        if 'ref' in data:
-            del data['ref']
-        if 'service' in data:
-            del data['service']
-        if 'junction' in data:
-            del data['junction']
-        if 'reversed' in data:
-            del data['reversed']
-        if 'travel_time' in data:
-            del data['travel_time']
-
+        for key in clean_keys:
+            data.pop(key, None)
     return graph
-
-
-def get_neighbours_edges(graph, node1, node2):
-    """ Get the neighbours edges of the nodes
-    Args:
-        graph: The graph to get the neighbours edges
-        node1: The first node
-        node2: The second node"""
-    neighbours_edges = []
-
-    for u, v, data in graph.edges(data=True):
-        if u == node1 or v == node1 or u == node2 or v == node2:
-            neighbours_edges.append((u, v))
-
-    neighbours_edges.remove((node1, node2))
-
-    try:
-        # Don't consider the reverse way of the edge, if it exists
-        neighbours_edges.remove((node2, node1))
-    except ValueError:
-        pass
-
-    return neighbours_edges
 
 
 def add_traffic_level_from_file(graph, datafile, filename, neighbours_dictionary=None, fill_empty_edges=True,
@@ -505,48 +452,14 @@ def add_traffic_level_from_file(graph, datafile, filename, neighbours_dictionary
 
     data = geojson.load(datafile)
 
-    middle_coordinates_lat = []
-    middle_coordinates_lon = []
+    coordinates_lat, coordinates_lon, nearest_edges_and_distance_list = __generate_lists_coordiantes_and_neares_edges(
+        data, graph)
 
-    coordinates_lat = []
-    coordinates_lon = []
-
-    i = 0
-
-    # Get from every feature (pair of points) the middle point
-    for feature in data["features"]:
-
-        if skip_feature(feature):
-            continue
-
-        i += 1
-        coordinates = feature["geometry"]["coordinates"]
-
-        # Get the two points of the edge
-        point_1 = (coordinates[0][1], coordinates[0][0])
-        point_2 = (coordinates[1][1], coordinates[1][0])
-
-        # We will need this coordinates to get the bearing of the edge
-        coordinates_lon.append(point_1[1])
-        coordinates_lon.append(point_2[1])
-
-        coordinates_lat.append(point_1[0])
-        coordinates_lat.append(point_2[0])
-
-        # Get the middle of both points to try to find the nearest edge in the graph
-        middle_point = ((point_1[0] + point_2[0]) / 2, (point_1[1] + point_2[1]) / 2)
-        middle_coordinates_lon.append(middle_point[1])
-        middle_coordinates_lat.append(middle_point[0])
-
-    # Get the list with the nearest edges and the distance to them
-    nearest_edges_and_distance_list = ox.distance.nearest_edges(graph, middle_coordinates_lon, middle_coordinates_lat,
-                                                                return_dist=True)
-
-    if len(nearest_edges_and_distance_list[0]) != i:
+    if len(nearest_edges_and_distance_list[0]) != len(coordinates_lat):
         raise ValueError("ERROR: Different number of features and nearest edges")
 
     nearest_edges_list = nearest_edges_and_distance_list[0]
-    nearest_distance_list = nearest_edges_and_distance_list[1]
+    # nearest_distance_list = nearest_edges_and_distance_list[1]
 
     # Iteration over the features (easiest way to keep the order)
     j = 0
@@ -571,9 +484,8 @@ def add_traffic_level_from_file(graph, datafile, filename, neighbours_dictionary
             nearest_edge = graph.edges[node_2_id, node_1_id, 0]
 
         # Handle Jimenez Fraud Way (API edge is reversed)
-        if (nearest_edge["osmid"] == 199419587
-                and are_opposite_bearings(nearest_edge["bearing"], bearing_api_edge)):
-            nearest_edge = __handle_jimenez_fraud(graph, node_1_id, node_2_id, filename, info)
+        if nearest_edge["osmid"] == 199419587 and are_opposite_bearings(nearest_edge["bearing"], bearing_api_edge):
+            nearest_edge = handle_jimenez_fraud(graph, node_1_id, node_2_id, filename, info)
 
         # Add traffic level
         nearest_edge["most_recent"] = info
@@ -586,41 +498,6 @@ def add_traffic_level_from_file(graph, datafile, filename, neighbours_dictionary
     return graph
 
 
-def __handle_jimenez_fraud(graph, node_1_id, node_2_id, filename, info):
-    nearest_edge = graph.edges[node_1_id, node_2_id, 0]
-
-    if node_1_id == 2094195157 and node_2_id == 2094195159:
-        nearest_edge = graph.edges[418336300, 418336304, 0]
-        extra_edge_info = graph.edges[418336304, 418336308, 0]
-        extra_edge_info["dates"][filename] = info
-
-    if node_1_id == 2094195165 and node_2_id == 3152120576:
-        nearest_edge = graph.edges[418336289, 4943984606, 0]
-
-        extra_edge_info = graph.edges[4943984604, 3152120577, 0]
-        extra_edge_info["dates"][filename] = info
-
-        extra_edge_info = graph.edges[3152120577, 418336292, 0]
-        extra_edge_info["dates"][filename] = info
-
-    if node_1_id == 2094195153 and node_2_id == 2094195155:
-        nearest_edge = graph.edges[418336308, 2094195150, 0]
-
-    if node_1_id == 2614757891 and node_2_id == 2094195161:
-        nearest_edge = graph.edges[250962361, 2614757893, 0]
-
-        extra_edge_info = graph.edges[2614757893, 5625095808, 0]
-        extra_edge_info["dates"][filename] = info
-
-        extra_edge_info = graph.edges[5625095808, 418336300, 0]
-        extra_edge_info["dates"][filename] = info
-
-    if node_1_id == 2094195161 and node_2_id == 2874546302:
-        nearest_edge = graph.edges[2874546303, 250962361, 0]
-
-    return nearest_edge
-
-
 def interpolate_traffic_level(graph, filename, neighbours_dictionary=None, precision=6):
     """ Interpolate the traffic level of the edges with the traffic level of the neighbours that have it
     Args:
@@ -631,16 +508,12 @@ def interpolate_traffic_level(graph, filename, neighbours_dictionary=None, preci
 
     num_iter = 0
     num_edges_interpolated = 1
-
+    d = neighbours_dictionary
     if neighbours_dictionary is None:
-        print("Getting the neighbours edges...")
-        d = {}
-        for u, v, data in graph.edges(data=True):
-            d[(u, v)] = get_neighbours_edges(graph, u, v)
-    else:
-        d = neighbours_dictionary
+        logging.info("Getting the neighbours edges...")
+        d = {(u, v): get_neighbours_edges(graph, u, v) for u, v, data in graph.edges(data=True)}
 
-    print("Interpolating the traffic level...")
+    logging.info("Interpolating the traffic level...")
     while num_edges_interpolated > 0:
         num_edges_interpolated = 0
         num_iter += 1
@@ -673,15 +546,13 @@ def interpolate_traffic_level(graph, filename, neighbours_dictionary=None, preci
 ########################################################################################################################
 
 def save_in_mongo(datetime_string, graph, graph_area):
-    # Save the graph in MongoDB
+    repo = None
     if graph_area == 'teatinos':
-        graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, datetime_string)
-        mongo.insert_data(mongo.get_database()["graphs"], graph_to_dictionary)
-        print(f"Saved graph TEATINOS with traffic level from {datetime_string} to MongoDB\n\n")
+        repo = RepositorioGraph()
     elif graph_area == 'soho':
-        graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, datetime_string)
-        mongo.insert_data(mongo.get_database()["graphs_soho"], graph_to_dictionary)
-        print(f"Saved graph SOHO with traffic level from {datetime_string} to MongoDB\n\n")
+        repo = RepositorioGraphSoho()
+    graph_to_dictionary = __prepare_graph_date_before_saving_mongo(graph, datetime_string)
+    repo.insert_one(Graph(**graph_to_dictionary))
 
 
 def get_files_dictionary_from_folder(path):
@@ -702,12 +573,3 @@ def get_files_dictionary_from_folder(path):
         available_files.append(next_file)
 
     return available_files
-
-
-########################################################################################################################
-#                                         DELETE FILES
-########################################################################################################################
-
-
-if __name__ == "__main__":
-    print("This is the translation file")

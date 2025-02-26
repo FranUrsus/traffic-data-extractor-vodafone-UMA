@@ -1,6 +1,29 @@
 import math
 
 
+def get_neighbours_edges(graph, node1, node2):
+    """ Get the neighbours edges of the nodes
+    Args:
+        graph: The graph to get the neighbours edges
+        node1: The first node
+        node2: The second node"""
+    neighbours_edges = []
+
+    for u, v, data in graph.edges(data=True):
+        if u == node1 or v == node1 or u == node2 or v == node2:
+            neighbours_edges.append((u, v))
+
+    neighbours_edges.remove((node1, node2))
+
+    try:
+        # Don't consider the reverse way of the edge, if it exists
+        neighbours_edges.remove((node2, node1))
+    except ValueError:
+        pass
+
+    return neighbours_edges
+
+
 def get_geojson_corners_coordinates(x_tile, y_tile, zoom, format="latlng"):
     """ Get the coordinates of the corners of a tile in the GeoJSON format
     Args:
