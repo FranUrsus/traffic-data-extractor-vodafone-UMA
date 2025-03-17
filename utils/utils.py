@@ -1,39 +1,24 @@
-import math
-
-
-def get_geojson_corners_coordinates(x_tile, y_tile, zoom, format="latlng"):
-    """ Get the coordinates of the corners of a tile in the GeoJSON format
+def get_neighbours_edges(graph, node1, node2):
+    """ Get the neighbours edges of the nodes
     Args:
-        x_tile: The x coordinate of the tile
-        y_tile: The y coordinate of the tile
-        zoom: The zoom level of the tile
-        format: The format of the coordinates. Choose between 'latlng' and 'lnglat'
-    Returns:
-         A list with the coordinates of the corners of the tile in the GeoJSON format"""
+        graph: The graph to get the neighbours edges
+        node1: The first node
+        node2: The second node"""
+    neighbours_edges = []
 
-    lng_left = x_tile * 360 / (2 ** zoom) - 180
-    lng_right = (x_tile + 1) * 360 / (2 ** zoom) - 180
-    lat_top = math.atan(math.sinh(math.pi * (1 - 2 * y_tile / (2 ** zoom)))) * 180 / math.pi
-    lat_bottom = math.atan(math.sinh(math.pi * (1 - 2 * (y_tile + 1) / (2 ** zoom)))) * 180 / math.pi
+    for u, v, data in graph.edges(data=True):
+        if u == node1 or v == node1 or u == node2 or v == node2:
+            neighbours_edges.append((u, v))
 
-    if format == "latlng":
-        return [
-            [lat_top, lng_left],
-            [lat_bottom, lng_left],
-            [lat_bottom, lng_right],
-            [lat_top, lng_right],
-            [lat_top, lng_left]  # Closing coordinate
-        ]
-    elif format == "lnglat":
-        return [
-            [lng_left, lat_top],
-            [lng_left, lat_bottom],
-            [lng_right, lat_bottom],
-            [lng_right, lat_top],
-            [lng_left, lat_top]  # Closing coordinate
-        ]
-    else:
-        raise ValueError("Invalid format. Choose 'latlng' or 'lnglat'.")
+    neighbours_edges.remove((node1, node2))
+
+    try:
+        # Don't consider the reverse way of the edge, if it exists
+        neighbours_edges.remove((node2, node1))
+    except ValueError:
+        pass
+
+    return neighbours_edges
 
 
 def normalize(x, in_min, in_max, out_min, out_max):
@@ -125,15 +110,3 @@ def skip_feature(feature):
 
     return False
 
-
-if __name__ == "__main__":
-    print("Running 'utils.py' as main file.\n")
-
-    x_tile_coords = 7988
-    y_tile_coords = 6393
-    zoom = 14
-
-    geojson_coordinates_tile1 = get_geojson_corners_coordinates(x_tile_coords, y_tile_coords, zoom, format="lnglat")
-    #print(geojson_coordinates_tile1)
-    geojson_coordinates_tile2 = get_geojson_corners_coordinates(x_tile_coords, y_tile_coords - 1, zoom, format="lnglat")
-    #print(geojson_coordinates_tile2)
