@@ -3,7 +3,7 @@ import os
 import time
 import logging
 
-from utils_pbf import extract_tile_pbf_from_url
+from utils.utils_pbf import extract_tile_pbf_from_url
 
 import geojson
 from datetime import datetime

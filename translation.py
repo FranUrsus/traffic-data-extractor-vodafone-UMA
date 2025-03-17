@@ -11,9 +11,10 @@ from shapely.geometry import Point, LineString
 
 from mongo.entity import Graph
 from mongo.repository import RepositorioGraph, RepositorioGraphSoho
-from utils import are_opposite_bearings, get_neighbours_edges, normalize, skip_feature, \
-    get_cardinal_direction_from_bearing, create_linestring_geojson
-from utils_zona_teatinos import handle_jimenez_fraud
+from utils.utils import are_opposite_bearings, get_neighbours_edges, normalize, skip_feature, \
+    get_cardinal_direction_from_bearing
+from utils.utils_geojson import create_linestring_geojson
+from utils.utils_zona_teatinos import handle_jimenez_fraud
 
 
 ########################################################################################################################
@@ -90,7 +91,7 @@ def __generate_lists_coordiantes_and_neares_edges(data, graph):
         coordinates_lat.append(point_2_lat)
         coordinates_lon.append(point_2_lon)
 
-        middle_coordinates_lat.append((point_1_lon + point_2_lon) / 2)
+        middle_coordinates_lat.append((point_1_lat + point_2_lat) / 2)
         middle_coordinates_lon.append((point_1_lon + point_2_lon) / 2)
     nearest_edges_and_distance_list = ox.distance.nearest_edges(graph, middle_coordinates_lon, middle_coordinates_lat,
                                                                 return_dist=True)
@@ -218,7 +219,6 @@ def add_info_to_file(filename, folder_input, folder_output, graph,
     }
 
     json.dump(res, open(f"{folder_output}/{filename}.pbf.json", "w"))
-
 
 
 ########################################################################################################################
@@ -359,15 +359,14 @@ def add_traffic_level_from_file(graph, datafile, filename, neighbours_dictionary
         The graph with the traffic level added"""
 
     for u, v, edge_data in graph.edges(data=True):
-        info = {'traffic_level': None, 'api_data': False, 'date': filename}
-        edge_data["most_recent"] = info
+        edge_data["most_recent"] = {'traffic_level': None, 'api_data': False, 'date': filename}
 
     data = geojson.load(datafile)
 
     coordinates_lat, coordinates_lon, nearest_edges_and_distance_list = __generate_lists_coordiantes_and_neares_edges(
         data, graph)
 
-    if len(nearest_edges_and_distance_list[0]) != len(coordinates_lat):
+    if len(nearest_edges_and_distance_list[0]) != len(coordinates_lat) / 2:
         raise ValueError("ERROR: Different number of features and nearest edges")
 
     nearest_edges_list = nearest_edges_and_distance_list[0]
@@ -386,11 +385,11 @@ def add_traffic_level_from_file(graph, datafile, filename, neighbours_dictionary
         # We assume that the nearest edge is the correct one (reversed or not)
         node_1_id = nearest_edge_id[0]
         node_2_id = nearest_edge_id[1]
-        nearest_edge = graph.edges[node_1_id, node_2_id, 0]
-
         # Then, we check if the road is reversed, if so, we invert the order of the edge's nodes
         bearing_api_edge = ox.bearing.calculate_bearing(coordinates_lat[j * 2], coordinates_lon[j * 2],
                                                         coordinates_lat[j * 2 + 1], coordinates_lon[j * 2 + 1])
+
+        nearest_edge = graph.edges[node_1_id, node_2_id, 0]
 
         if not nearest_edge["oneway"] and are_opposite_bearings(nearest_edge["bearing"], bearing_api_edge):
             nearest_edge = graph.edges[node_2_id, node_1_id, 0]

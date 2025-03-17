@@ -15,7 +15,13 @@ def _clean_edges_info(graph):
         data['traffic_level'] = data['most_recent']['traffic_level']
         data['api_data'] = data['most_recent']['api_data']
         try:
-            maxspeed = float(data.get('maxspeed', 0))  # Usa 0 si no existe
+            maxspeed = data.get('maxspeed', 0)
+            if type(maxspeed) is list:
+                _maxspeed = 0
+                for x in maxspeed:
+                    _maxspeed += float(x)
+                maxspeed = _maxspeed/len(maxspeed)
+            maxspeed = float(maxspeed)  # Usa 0 si no existe
             traffic_level = float(data.get('traffic_level', 1))  # Usa 1 si no existe
             data['current_speed'] = maxspeed * traffic_level
         except ValueError:
