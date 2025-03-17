@@ -3,8 +3,7 @@ cache/*
 data/*
 stored-data/*
 month_rar/*
-.DS_STORE
-
+logs.txt
 
 .idea/*
 
