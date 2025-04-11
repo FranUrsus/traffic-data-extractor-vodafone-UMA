@@ -155,8 +155,7 @@ if __name__ == "__main__":
         save_json_to_mongo(datetime_string, zonas, "teatinos")
         #
         # # Soho
-        save_json_to_mongo(datetime_string, zonas, "soho")
-        exit(-1)
+        #save_json_to_mongo(datetime_string, zonas, "soho")
 
         # Calculate elapsed time and sleep for the remaining time to complete 15 minutes
         elapsed_time = time.time() - start_time
